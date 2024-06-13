@@ -20,33 +20,42 @@ class World {
     this.setWorld();
   }
 
-  setWorld(){
+  setWorld() {
     this.character.world = this;
   }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.addObjectsToMap(this.backgroundObjects)
-    this.addObjectsToMap(this.clouds)
-    this.addObjectsToMap(this.enemies)
-    this.addToMap(this.character)
+    this.addObjectsToMap(this.backgroundObjects);
+    this.addObjectsToMap(this.clouds);
+    this.addObjectsToMap(this.enemies);
+    this.addToMap(this.character);
 
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
-
-    
   }
 
   addObjectsToMap(objects) {
-    objects.forEach(o => {
-        this.addToMap(o);
-    })
+    objects.forEach((o) => {
+      this.addToMap(o);
+    });
   }
 
   addToMap(mo) {
-    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height)
+    if (mo.otherDirection) { // bild spiegeln
+      this.ctx.save();
+      this.ctx.translate(mo.width, 0);
+      this.ctx.scale(-1, 1);
+      mo.x = mo.x * -1;
+    }
+
+    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    if (mo.otherDirection) {
+      mo.x = mo.x * -1;
+      this.ctx.restore();
+    }
   }
 }
