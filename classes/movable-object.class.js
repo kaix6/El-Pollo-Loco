@@ -11,6 +11,8 @@ class MovableObject {
   speedY = 0;
   acceleration = 2;
 
+
+
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -43,11 +45,13 @@ class MovableObject {
     this.x += this.speed;
     this.otherDirection = false;
     this.walking_sound.play();
+    this.walking_sound.volume = 0.1;
   }
   moveLeftCharacter() {
     this.x -= this.speed;
     this.otherDirection = true;
     this.walking_sound.play();
+    this.walking_sound.volume = 0.1;
   }
 
   moveLeft() {
@@ -65,11 +69,5 @@ class MovableObject {
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
-  }
-
-  walkAnimation() {
-    this.playAnimation(this.IMAGES_WALKING);
-    this.testbutton = false;
-    this.longIdle = false;
   }
 }

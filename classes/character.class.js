@@ -89,8 +89,12 @@ class Character extends MovableObject {
 
         // Walk Animation
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-          this.walkAnimation();
+          this.playAnimation(this.IMAGES_WALKING);
+          this.idlebutton = false;
+          this.longIdle = false;
+        
           clearTimeout(this.longIdleTimer);
+        
         } else {
           if (this.idlebutton === false) {
             this.idlebutton = true;
