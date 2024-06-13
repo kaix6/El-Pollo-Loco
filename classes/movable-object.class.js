@@ -32,4 +32,11 @@ class MovableObject {
       this.x -= this.speed; // 0,3px werden 60 x in der Sekunde abgezogen
     }, 1000 / 60); // 60FPS
   }
+
+  playAnimation(images) {
+    let i = this.currentImage % images.length; // let i = 0 % 6; // i = 0, 1, 2, 3, 4, 5, 0, 1, 2, ...
+    let path = images[i];
+    this.img = this.imageCache[path];
+    this.currentImage++;
+  }
 }
