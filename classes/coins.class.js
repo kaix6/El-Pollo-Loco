@@ -4,7 +4,7 @@ class Coins extends MovableObject {
   constructor() {
     super().loadImage("img/8_coin/coin_1.png");
 
-    this.x = 700 + Math.random() * 719 * 3 - 500; // Zahl zwischen 200 und 700px
+    this.x = 700 + Math.random() * 719 * 3 - 700; // Zahl zwischen 200 und 700px
     this.y = 280 - Math.random() * 150;
     this.height = 120;
     this.width = 120;
