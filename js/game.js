@@ -19,6 +19,9 @@ window.addEventListener('keydown', (event) => {
   if (event.code == 'Space' || event.code == 'KeyW' || event.code == 'ArrowUp') {
     keyboard.UP = true;
   }
+  if (event.code == 'KeyF') {
+    keyboard.THROW = true;
+  }
   // console.log(event);
 })
 
@@ -32,6 +35,9 @@ window.addEventListener('keyup', (event) => {
   }
   if (event.code == 'Space' || event.code == 'KeyW' || event.code == 'ArrowUp') {
     keyboard.UP = false;
+  }
+  if (event.code == 'KeyF') {
+    keyboard.THROW = false;
   }
   // console.log(event);
 })

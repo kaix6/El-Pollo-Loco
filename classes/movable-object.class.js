@@ -16,10 +16,12 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGround() {
-    return this.y < 200;
+    if (this instanceof ThrowableObject) {
+      return this.y < 340;
+    } else {
+      return this.y < 200;
+    }
   }
-
-  
 
   // character ist colliding chicken
   isColliding(mo) {
