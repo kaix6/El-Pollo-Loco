@@ -42,6 +42,24 @@ checkThrowObjects() {
         this.statusBar.setPercentage(this.character.energy);
       }
     });
+    this.level.coins = this.level.coins.filter((coin) => {
+      if (this.character.isColliding(coin)) {
+        this.character.collectCoins();
+        console.log("Your Coins", this.character.energy_coins);
+        this.statusBarCoins.setPercentage(this.character.energy_coins);
+        return false; // Münze wird entfernt
+      }
+      return true; // Münze bleibt
+    });
+    this.level.bottles = this.level.bottles.filter((bottle) => {
+      if (this.character.isColliding(bottle)) {
+        this.character.collectBottles();
+        console.log("Your Bottles", this.character.energy_bottles);
+        this.statusBarBottles.setPercentage(this.character.energy_bottles);
+        return false; // Flasche wird entfernt
+      }
+      return true; // Flasche bleibt
+    });
   }
 
   setWorld() {

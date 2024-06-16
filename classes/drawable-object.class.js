@@ -32,7 +32,9 @@ width = 100;
           this instanceof Character ||
           this instanceof Chicken ||
           this instanceof ChickenSmall ||
-          this instanceof Endboss
+          this instanceof Endboss ||
+          this instanceof Coins ||
+          this instanceof Bottels
         ) {
           ctx.beginPath();
           ctx.lineWidth = "3";
