@@ -9,6 +9,7 @@ class World {
   statusBarCoins = new StatusBarCoins();
   statusBarBottles = new StatusBarBottles();
   throwableObject = [];
+  throw_sound = new Audio("audio/throw.wav");
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -26,26 +27,31 @@ class World {
     }, 200);
   }
 
+  checkThrowObjects() {
+    if (this.keyboard.THROW) {
 
-checkThrowObjects() {
-  if (this.keyboard.THROW) {
-    let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100)
-    this.throwableObject.push(bottle);
+    
+      let bottle = new ThrowableObject(
+        this.character.x + 60,
+        this.character.y + 100
+      );
+      
+      this.throwableObject.push(bottle);
+      this.throw_sound.play();
+      this.throw_sound.volume = 0.1;
+    }
   }
-}
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
-        console.log("Your Energy", this.character.energy);
         this.statusBar.setPercentage(this.character.energy);
       }
     });
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
         this.character.collectCoins();
-        console.log("Your Coins", this.character.energy_coins);
         this.statusBarCoins.setPercentage(this.character.energy_coins);
         return false; // Münze wird entfernt
       }
@@ -54,7 +60,6 @@ checkThrowObjects() {
     this.level.bottles = this.level.bottles.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
         this.character.collectBottles();
-        console.log("Your Bottles", this.character.energy_bottles);
         this.statusBarBottles.setPercentage(this.character.energy_bottles);
         return false; // Flasche wird entfernt
       }

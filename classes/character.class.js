@@ -61,6 +61,7 @@ class Character extends MovableObject {
   walking_sound = new Audio("audio/walk3.wav");
   hurt_sound = new Audio('audio/hurt.wav');
   coins_sound = new Audio('audio/collectCoin.wav');
+  bottles_sound = new Audio('audio/bottles.wav');
   longIdle = false;
   longIdleTimer;
   idlebutton = false;
@@ -113,7 +114,6 @@ class Character extends MovableObject {
           if (this.idlebutton === false) {
             this.idlebutton = true;
             this.longIdleTimer = setTimeout(() => {
-              console.log("5 Sekunden sind rum");
               this.longIdle = true;
             }, 5000);
           }
