@@ -28,17 +28,17 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.THROW) {
-
-    
+    if (this.keyboard.THROW && this.character.energy_bottles > 0) {
       let bottle = new ThrowableObject(
         this.character.x + 60,
         this.character.y + 100
       );
-      
+
       this.throwableObject.push(bottle);
       this.throw_sound.play();
       this.throw_sound.volume = 0.1;
+      this.character.energy_bottles -= 10;
+      this.statusBarBottles.setPercentage(this.character.energy_bottles);
     }
   }
 

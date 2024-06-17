@@ -13,4 +13,15 @@ class Level {
     this.coins = coins;
     this.bottles = bottles;
   }
+
+  addThrowableObject(bottle) {
+    this.bottles.push(bottle);
+  }
+
+  removeThrowableObject(bottle) {
+    const index = this.bottles.indexOf(bottle);
+    if (index > -1) {
+      this.bottles.splice(index, 1);
+    }
+  }
 }
