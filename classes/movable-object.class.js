@@ -95,13 +95,13 @@ class MovableObject extends DrawableObject {
     this.x += this.speed;
     this.otherDirection = false;
     this.walking_sound.play();
-    this.walking_sound.volume = 0.1;
+    this.walking_sound.volume = 0.05;
   }
   moveLeftCharacter() {
     this.x -= this.speed;
     this.otherDirection = true;
     this.walking_sound.play();
-    this.walking_sound.volume = 0.1;
+    this.walking_sound.volume = 0.05;
   }
 
   moveLeft() {
@@ -112,6 +112,7 @@ class MovableObject extends DrawableObject {
 
   jump() {
     this.speedY = 25;
+    this.walking_sound.pause();
   }
 
   playAnimation(images) {

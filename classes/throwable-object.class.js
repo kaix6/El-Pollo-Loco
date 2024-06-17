@@ -15,6 +15,8 @@ class ThrowableObject extends MovableObject {
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
+  IMAGES_DELETE = [""];
+
   hitGround = false;
   groundHitAnimationPlayed = false;
 
@@ -30,6 +32,7 @@ class ThrowableObject extends MovableObject {
     this.level = level; // Referenz auf das Levelobjekt
     this.loadImages(this.IMAGES);
     this.loadImages(this.IMAGES_BOTTLE_HIT_GROUND);
+    this.loadImages(this.IMAGES_DELETE);
     this.throw();
   }
 
@@ -53,6 +56,10 @@ class ThrowableObject extends MovableObject {
     if (!this.groundHitAnimationPlayed) {
       this.playAnimation(this.IMAGES_BOTTLE_HIT_GROUND);
       this.groundHitAnimationPlayed = true;
+      clearInterval(this.throwInterval);
+      setTimeout(() => {
+        this.playAnimation(this.IMAGES_DELETE);
+      }, 100);
     }
   }
 }
