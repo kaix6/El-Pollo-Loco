@@ -10,6 +10,10 @@ class World {
   statusBarBottles = new StatusBarBottles();
   throwableObject = [];
   throw_sound = new Audio("audio/throw.wav");
+  isDead;
+
+  IMAGE_DEAD = "img/3_enemies_chicken/chicken_small/2_dead/dead.png";
+  IMAGE_DEAD_BIG = "img/3_enemies_chicken/chicken_normal/2_dead/dead.png";
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -24,6 +28,7 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
+      // this.checkEnemyJumpCollision();
     }, 200);
   }
 
@@ -43,12 +48,23 @@ class World {
   }
 
   checkCollisions() {
+    this.isDead = false;
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy)) {
-        this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
+      if (this.character.isColliding(enemy) && !enemy.isDead) {
+        if (this.character.isJumpingOn(enemy)) {
+          enemy.img.src = this.IMAGE_DEAD_BIG;
+          enemy.isDead = true; // Markiere den Feind als tot
+          setTimeout(() => {
+            this.level.enemies = this.level.enemies.filter((e) => e !== enemy)
+            this.character.speedY = 0;
+          }, 500); // Entferne den Feind nach 0.5 Sekunden
+        } else {
+          this.character.hit();
+          this.statusBar.setPercentage(this.character.energy);
+        }
       }
     });
+
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
         this.character.collectCoins();
@@ -57,6 +73,7 @@ class World {
       }
       return true; // Münze bleibt
     });
+
     this.level.bottles = this.level.bottles.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
         this.character.collectBottles();
@@ -130,4 +147,16 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+
+  // checkEnemyJumpCollision() {
+  //   this.level.enemies.forEach((enemy) => {
+  //     if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
+  //       enemy.img.src = this.IMAGE_DEAD_BIG;
+  //       enemy.isDead = true; // Markiere den Feind als tot
+  //       setTimeout(() => {
+  //         this.level.enemies = this.level.enemies.filter(e => e !== enemy);
+  //       }, 500); // Entferne den Feind nach 0.5 Sekunden
+  //     }
+  //   });
+  // }
 }
