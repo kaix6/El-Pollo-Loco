@@ -69,3 +69,10 @@ function exitFullscreen() {
     document.webkitExitFullscreen();
   }
 }
+
+function startGame() {
+  let startScreen = document.getElementById('startScreen');
+  let gameScreen = document.getElementById('fullscreen');
+  startScreen.classList.add('displayNone')
+  gameScreen.classList.remove('displayNone');
+}

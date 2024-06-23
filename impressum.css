@@ -1,0 +1,25 @@
+body {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-style: italic;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-image: url('img/5_background/first_half_background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: rgb(0, 0, 0);
+}
+
+.home {
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+}
+
+.home:hover {
+    text-decoration: underline;
+}
+

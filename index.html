@@ -34,24 +34,40 @@
     <script src="js/game.js"></script>
   </head>
   <body onload="init()">
-    <h1 class="keyboard-layout-big">El Pollo Loco</h1>
-    <div id="fullscreen">
-      <canvas id="canvas" width="720" height="480"> </canvas>
-      <div class="keyboard-layout">
-        <span
-          ><span class="keyboard-layout-big">Left:</span>
-          <img src="img/arrow-left.svg" alt="" />/ A</span
-        >
-        <span
-          ><span class="keyboard-layout-big">Right:</span>
-          <img src="img/arrow-right.svg" alt="" />/ D</span
-        >
-        <span
-          ><span class="keyboard-layout-big">Jump:</span>
-          <img src="img/arrow-up.svg" />/ W /SPACE</span
-        >
-        <span><span class="keyboard-layout-big">Throw Bottle:</span> F</span>
-        <img class="fullscreen-icon" onclick="fullscreen()" src="img/fullscreen.svg" alt="">
+    <div id="startScreen" class="startScreen">
+
+      <nav>
+        <button onclick="startGame()">START</button>
+        <a href="impressum.html"><button>IMPRESSUM</button></a>
+        <a href="settings.html"><button>SETTINGS</button></a>
+      </nav>
+     
+    </div>
+    <div class="containerCanvas">
+      <h1 class="keyboard-layout-big">El Pollo Loco</h1>
+      <div id="fullscreen" class="displayNone">
+        <canvas id="canvas" width="720" height="480"> </canvas>
+        <div class="keyboard-layout">
+          <span
+            ><span class="keyboard-layout-big">Left:</span>
+            <img src="img/arrow-left.svg" alt="" />/ A</span
+          >
+          <span
+            ><span class="keyboard-layout-big">Right:</span>
+            <img src="img/arrow-right.svg" alt="" />/ D</span
+          >
+          <span
+            ><span class="keyboard-layout-big">Jump:</span>
+            <img src="img/arrow-up.svg" />/ W /SPACE</span
+          >
+          <span><span class="keyboard-layout-big">Throw Bottle:</span> F</span>
+          <img
+            class="fullscreen-icon"
+            onclick="fullscreen()"
+            src="img/fullscreen.svg"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   </body>

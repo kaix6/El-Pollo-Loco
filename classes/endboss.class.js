@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
 
   hadFirstContact = false;
   isDead = false;
+  hitPoints = 5;
 
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
@@ -28,21 +29,30 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/3_attack/G20.png",
   ];
 
-  constructor() {
+  IMAGES_DEAD = [
+    "img/4_enemie_boss_chicken/5_dead/G24.png",
+    "img/4_enemie_boss_chicken/5_dead/G25.png",
+    "img/4_enemie_boss_chicken/5_dead/G26.png",
+  ];
+
+  constructor(level) {
     super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png");
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_ANGRY);
+    this.loadImages(this.IMAGES_DEAD);
     this.x = 719 * 3 + 200;
     this.speed = 0.3 + Math.random() * 0.25;
+    this.level = level; // Referenz auf das Level-Objekt speichern
     this.animate();
+    this.hit();
   }
 
   animate() {
     let i = 0;
-    setInterval(() => {
-      if (i < 10) {
+    this.animationInterval = setInterval(() => {
+      if (i < 10 && !this.isDead) {
         this.playAnimation(this.IMAGES_WALKING);
-      } else {
+      } else if (!this.isDead) {
         this.playAnimation(this.IMAGES_ANGRY);
       }
       i++;
@@ -52,5 +62,33 @@ class Endboss extends MovableObject {
       }
     }, 180);
     this.moveLeft();
+  }
+  
+  hit() {
+    this.hitPoints -= 1;
+    if (this.hitPoints <= 0) {
+      this.die();
+      this.isDead = true;
+    }
+  }
+
+  die() {
+    clearInterval(this.animationInterval); // Stoppt die Animation
+    this.deathAnimationInterval = setInterval(() => {
+      if (this.isDead) {
+        this.playAnimation(this.IMAGES_DEAD);
+      }
+    }, 100);
+
+    setTimeout(() => {
+      clearInterval(this.deathAnimationInterval); // Stoppt die Todanimation
+      this.endGame();
+    }, 1000); // 1 Sekunde Verzögerung
+  }
+
+  endGame() {
+    clearInterval(this.animationInterval);
+    clearInterval(this.deathAnimationInterval);
+    window.location.href = "index.html";
   }
 }

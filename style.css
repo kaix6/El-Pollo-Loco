@@ -2,7 +2,8 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: url(img/background-dessert.jpg);
+  background-image: url('img/background-dessert.jpg');
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -34,4 +35,51 @@ canvas {
   height: 20px;
   width: 20px;
   cursor: pointer;
+}
+
+.startScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(img/startscreen.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav {
+display: flex;
+justify-content: center;
+height: 100vh;
+align-items: flex-end;
+gap: 100px;
+}
+
+button {
+  margin-bottom: 40px;
+  font-size: 30px;
+  padding: 10px 20px;
+  border: 3px solid black;
+  background-color:rgb(115 150 36);
+  border-radius: 20px;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: italic;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+
+}
+
+.displayNone {
+  display: none;
+}
+
+button a {
+  text-decoration: none;
+  color: white;
 }

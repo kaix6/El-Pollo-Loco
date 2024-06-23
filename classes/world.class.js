@@ -48,15 +48,17 @@ class World {
 
   checkCollisions() {
     this.isDead = false;
+  
+    // Überprüfe Kollision zwischen Charakter und Feinden
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy) && !enemy.isDead) {
         if (this.character.isJumpingOn(enemy)) {
           enemy.img.src = this.IMAGE_DEAD_BIG;
-          enemy.isDead = true; // Markiere den Feind als tot
+          enemy.isDead = true;
           setTimeout(() => {
             this.level.enemies = this.level.enemies.filter((e) => e !== enemy)
             this.character.speedY = 0;
-          }, 500); // Entferne den Feind nach 0.5 Sekunden
+          }, 500);
         } else {
           this.character.hit();
           this.statusBar.setPercentage(this.character.energy);
@@ -64,22 +66,34 @@ class World {
       }
     });
   
+    // Überprüfe Kollision zwischen Flaschen und Endboss
+    this.throwableObject.forEach((bottle) => {
+      this.level.enemies.forEach((enemy) => {
+        if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
+          enemy.hit();
+          this.throwableObject = this.throwableObject.filter((b) => b !== bottle); // Entferne die Flasche
+        }
+      });
+    });
+  
+    // Überprüfe Kollision zwischen Charakter und Münzen
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
         this.character.collectCoins();
         this.statusBarCoins.setPercentage(this.character.energy_coins);
-        return false; // Münze wird entfernt
+        return false;
       }
-      return true; // Münze bleibt
+      return true;
     });
   
+    // Überprüfe Kollision zwischen Charakter und Flaschen
     this.level.bottles = this.level.bottles.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
         this.character.collectBottles();
         this.statusBarBottles.setPercentage(this.character.energy_bottles);
-        return false; // Flasche wird entfernt
+        return false;
       }
-      return true; // Flasche bleibt
+      return true;
     });
   }
 
