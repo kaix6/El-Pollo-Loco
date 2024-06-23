@@ -56,14 +56,16 @@ class Character extends MovableObject {
     "img/2_character_pepe/4_hurt/H-42.png",
     "img/2_character_pepe/4_hurt/H-43.png",
   ];
+  IMAGES_GAMEOVER = ['img/9_intro_outro_screens/game_over/game over.png'];
+
   world;
   speed = 5;
   walking_sound = new Audio("audio/walk3.wav");
-  hurt_sound = new Audio('audio/hurt.wav');
-  coins_sound = new Audio('audio/collectCoin.wav');
-  bottles_sound = new Audio('audio/bottles.wav');
-  long_idle_sound = new Audio('audio/snore.wav');
-  background_music = new Audio('audio/background_music.wav');
+  hurt_sound = new Audio("audio/hurt.wav");
+  coins_sound = new Audio("audio/collectCoin.wav");
+  bottles_sound = new Audio("audio/bottles.wav");
+  long_idle_sound = new Audio("audio/snore.wav");
+  background_music = new Audio("audio/background_music.wav");
   longIdle = false;
   longIdleTimer;
   idlebutton = false;
@@ -79,6 +81,7 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_HURT);
+    this.loadImages(this.IMAGES_GAMEOVER);
     this.applyGravity();
     this.animate();
   }

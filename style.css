@@ -1,9 +1,37 @@
 body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: url(img/background-dessert.jpg);
+  background-size: cover;
+}
+
+.ibm-plex-mono-semibold-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: italic;
 }
 
 canvas {
-    background-color: black;
+  background-color: black;
+}
+
+.keyboard-layout {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.keyboard-layout-big {
+  font-weight: bold;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.fullscreen-icon:hover {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
 }

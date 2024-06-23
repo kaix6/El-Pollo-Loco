@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El Pollo Loco</title>
 
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
     <script src="classes/drawable-object.class.js"></script>
     <script src="classes/movable-object.class.js"></script>
     <script src="classes/throwable-object.class.js"></script>
@@ -28,9 +34,25 @@
     <script src="js/game.js"></script>
   </head>
   <body onload="init()">
-    <h1>El Pollo Loco</h1>
-<div id="fullscreen">
-    <canvas id="canvas" width="720" height="480"> </canvas>
-  </div>
+    <h1 class="keyboard-layout-big">El Pollo Loco</h1>
+    <div id="fullscreen">
+      <canvas id="canvas" width="720" height="480"> </canvas>
+      <div class="keyboard-layout">
+        <span
+          ><span class="keyboard-layout-big">Left:</span>
+          <img src="img/arrow-left.svg" alt="" />/ A</span
+        >
+        <span
+          ><span class="keyboard-layout-big">Right:</span>
+          <img src="img/arrow-right.svg" alt="" />/ D</span
+        >
+        <span
+          ><span class="keyboard-layout-big">Jump:</span>
+          <img src="img/arrow-up.svg" />/ W /SPACE</span
+        >
+        <span><span class="keyboard-layout-big">Throw Bottle:</span> F</span>
+        <img class="fullscreen-icon" onclick="fullscreen()" src="img/fullscreen.svg" alt="">
+      </div>
+    </div>
   </body>
 </html>

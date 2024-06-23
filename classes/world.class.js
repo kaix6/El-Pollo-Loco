@@ -28,7 +28,6 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
-      // this.checkEnemyJumpCollision();
     }, 200);
   }
 
@@ -64,7 +63,7 @@ class World {
         }
       }
     });
-
+  
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
         this.character.collectCoins();
@@ -73,7 +72,7 @@ class World {
       }
       return true; // Münze bleibt
     });
-
+  
     this.level.bottles = this.level.bottles.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
         this.character.collectBottles();
@@ -147,16 +146,4 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
-
-  // checkEnemyJumpCollision() {
-  //   this.level.enemies.forEach((enemy) => {
-  //     if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
-  //       enemy.img.src = this.IMAGE_DEAD_BIG;
-  //       enemy.isDead = true; // Markiere den Feind als tot
-  //       setTimeout(() => {
-  //         this.level.enemies = this.level.enemies.filter(e => e !== enemy);
-  //       }, 500); // Entferne den Feind nach 0.5 Sekunden
-  //     }
-  //   });
-  // }
 }
