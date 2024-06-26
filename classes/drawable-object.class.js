@@ -35,14 +35,4 @@ class DrawableObject {
       ctx.stroke();
     }
   }
-
-  drawFrame2(ctx) {
-    if (this instanceof Character || this instanceof Coins) {
-      ctx.beginPath();
-      ctx.lineWidth = "3";
-      ctx.strokeStyle = "red";
-      ctx.rect(this.offsetX, this.offsetY, this.offsetWidth, this.offsetHeight);
-      ctx.stroke();
-    }
-  }
 }

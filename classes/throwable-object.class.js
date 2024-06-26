@@ -39,14 +39,18 @@ class ThrowableObject extends MovableObject {
   throw() {
     this.speedY = 30;
     this.applyGravity();
+    this.hitGround = false;
 
     this.throwInterval = setInterval(() => {
       if (this.energy_bottles >= 0) {
         this.playAnimation(this.IMAGES);
       }
-      if (this.y >= 366 && !this.hitGround) {
-        this.hitGround = true;
-        this.playGroundHitAnimation();
+      console.log(this.y);
+      if (this.y >= 350 && !this.hitGround) {
+        setTimeout(() => {
+          this.hitGround = true;
+          this.playGroundHitAnimation();
+        }, 1200);
       }
       this.x += 10;
     }, 50);
