@@ -1,13 +1,13 @@
 class Coins extends MovableObject {
-  IMAGES_WALKING = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];
+  IMAGES_WALKING = ['img-neu/coins/c1.png', 'img-neu/coins/c2.png'];
 
   constructor() {
-    super().loadImage("img/8_coin/coin_1.png");
+    super().loadImage("img-neu/coins/c1.png");
 
     this.x = 700 + Math.random() * 719 * 3 - 700; // Zahl zwischen 200 und 700px
     this.y = 280 - Math.random() * 150;
-    this.height = 120;
-    this.width = 120;
+    this.height = 40;
+    this.width = 40;
 
     this.loadImages(this.IMAGES_WALKING);
     this.animate();
