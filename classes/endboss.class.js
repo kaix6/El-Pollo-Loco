@@ -63,7 +63,7 @@ class Endboss extends MovableObject {
     }, 180);
     this.moveLeft();
   }
-  
+
   hit() {
     this.hitPoints -= 1;
     if (this.hitPoints <= 0) {

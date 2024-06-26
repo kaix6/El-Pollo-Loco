@@ -48,7 +48,7 @@ class World {
 
   checkCollisions() {
     this.isDead = false;
-  
+
     // Überprüfe Kollision zwischen Charakter und Feinden
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy) && !enemy.isDead) {
@@ -56,7 +56,7 @@ class World {
           enemy.img.src = this.IMAGE_DEAD_BIG;
           enemy.isDead = true;
           setTimeout(() => {
-            this.level.enemies = this.level.enemies.filter((e) => e !== enemy)
+            this.level.enemies = this.level.enemies.filter((e) => e !== enemy);
             this.character.speedY = 0;
           }, 500);
         } else {
@@ -65,17 +65,19 @@ class World {
         }
       }
     });
-  
+
     // Überprüfe Kollision zwischen Flaschen und Endboss
     this.throwableObject.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
         if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
           enemy.hit();
-          this.throwableObject = this.throwableObject.filter((b) => b !== bottle); // Entferne die Flasche
+          this.throwableObject = this.throwableObject.filter(
+            (b) => b !== bottle
+          ); // Entferne die Flasche
         }
       });
     });
-  
+
     // Überprüfe Kollision zwischen Charakter und Münzen
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
@@ -85,7 +87,7 @@ class World {
       }
       return true;
     });
-  
+
     // Überprüfe Kollision zwischen Charakter und Flaschen
     this.level.bottles = this.level.bottles.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
@@ -142,6 +144,7 @@ class World {
 
     mo.draw(this.ctx);
     mo.drawFrame(this.ctx);
+    mo.drawFrame2(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);

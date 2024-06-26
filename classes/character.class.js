@@ -56,7 +56,7 @@ class Character extends MovableObject {
     "img/2_character_pepe/4_hurt/H-42.png",
     "img/2_character_pepe/4_hurt/H-43.png",
   ];
-  IMAGES_GAMEOVER = ['img/9_intro_outro_screens/game_over/game over.png'];
+  IMAGES_GAMEOVER = ["img/9_intro_outro_screens/game_over/game over.png"];
 
   world;
   speed = 5;
@@ -72,8 +72,8 @@ class Character extends MovableObject {
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
-    this.y = 200;
-    this.height = 230;
+    this.y = 200; // 200
+    this.height = 230; // 230
     this.width = 110;
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_LONG_IDLE);

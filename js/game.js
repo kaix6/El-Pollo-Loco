@@ -48,7 +48,7 @@ window.addEventListener("keyup", (event) => {
 });
 
 function fullscreen() {
-  let fullscreen = document.getElementById('fullscreen');
+  let fullscreen = document.getElementById("fullscreen");
   enterFullscreen(fullscreen);
 }
 
@@ -71,8 +71,8 @@ function exitFullscreen() {
 }
 
 function startGame() {
-  let startScreen = document.getElementById('startScreen');
-  let gameScreen = document.getElementById('fullscreen');
-  startScreen.classList.add('displayNone')
-  gameScreen.classList.remove('displayNone');
+  let startScreen = document.getElementById("startScreen");
+  let gameScreen = document.getElementById("fullscreen");
+  startScreen.classList.add("displayNone");
+  gameScreen.classList.remove("displayNone");
 }

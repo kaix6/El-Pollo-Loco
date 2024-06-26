@@ -25,7 +25,6 @@ class MovableObject extends DrawableObject {
     }
   }
 
-  // character ist colliding chicken
   isColliding(mo) {
     return (
       this.x + this.width > mo.x &&
@@ -45,7 +44,7 @@ class MovableObject extends DrawableObject {
       this.hurt_sound.volume = 0.1;
       setTimeout(() => {
         this.hurt_sound.pause();
-        this.hurt_sound.currentTime = 0; 
+        this.hurt_sound.currentTime = 0;
       }, 1000);
       this.lastHit = new Date().getTime();
     }
@@ -61,7 +60,7 @@ class MovableObject extends DrawableObject {
       this.coins_sound.volume = 0.1;
       setTimeout(() => {
         this.coins_sound.pause();
-        this.coins_sound.currentTime = 0; 
+        this.coins_sound.currentTime = 0;
       }, 1000);
     }
   }
@@ -106,7 +105,7 @@ class MovableObject extends DrawableObject {
 
   moveLeft() {
     setInterval(() => {
-      this.x -= this.speed; 
+      this.x -= this.speed;
     }, 1000 / 60); // 60FPS
   }
 
@@ -125,10 +124,10 @@ class MovableObject extends DrawableObject {
   isJumpingOn(mo) {
     return (
       this.speedY < 0 && // Überprüft, ob der Charakter fällt
-      this.y + this.height > mo.y && // Überprüft, ob der Charakter über dem Feind ist
-      this.y < mo.y + mo.height / 2 && // Überprüft, ob der Charakter von oben auf den Feind springt
-      this.x + this.width > mo.x && // Überprüft, ob der rechte Rand des Charakters den linken Rand des Gegners überschneidet
-      this.x < mo.x + mo.width // Überprüft, ob der linke Rand des Charakters den rechten Rand des Gegners überschneidet
+      this.x + this.width > mo.x &&
+      this.y + this.height > mo.y &&
+      this.x < mo.x + mo.width &&
+      this.y < mo.y + mo.height
     );
   }
 }
