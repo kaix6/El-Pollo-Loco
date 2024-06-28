@@ -15,6 +15,7 @@ body {
 
 canvas {
   background-color: black;
+  display: block;
 }
 
 .keyboard-layout {
@@ -42,19 +43,24 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-image: url(img/startscreen.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.startScreen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 nav {
 display: flex;
 justify-content: center;
-height: 100vh;
-align-items: flex-end;
+align-items: center;
 gap: 100px;
+position: absolute;
+bottom: 0px;
+width: 100%;
 }
 
 button {
@@ -93,4 +99,16 @@ button a {
 .homeButton:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 720px){
+  canvas {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  canvas {
+    height: 100vh;
+  }
 }

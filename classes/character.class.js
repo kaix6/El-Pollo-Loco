@@ -20,16 +20,16 @@ class Character extends MovableObject {
     "img-neu/idle/idle/i10.png",
   ];
   IMAGES_LONG_IDLE = [
-    "img-neu/idle/idle/i11.png",
-    "img-neu/idle/idle/i12.png",
-    "img-neu/idle/idle/i13.png",
-    "img-neu/idle/idle/i14.png",
-    "img-neu/idle/idle/i15.png",
-    "img-neu/idle/idle/i16.png",
-    "img-neu/idle/idle/i17.png",
-    "img-neu/idle/idle/i18.png",
-    "img-neu/idle/idle/i19.png",
-    "img-neu/idle/idle/20.png",
+    "img-neu/idle/longIdle/i11.png",
+    "img-neu/idle/longIdle/i12.png",
+    "img-neu/idle/longIdle/i13.png",
+    "img-neu/idle/longIdle/i14.png",
+    "img-neu/idle/longIdle/i15.png",
+    "img-neu/idle/longIdle/i16.png",
+    "img-neu/idle/longIdle/i17.png",
+    "img-neu/idle/longIdle/i18.png",
+    "img-neu/idle/longIdle/i19.png",
+    "img-neu/idle/longIdle/i20.png",
   ];
   IMAGES_JUMPING = [
     "img-neu/jump/j31.png",
@@ -121,12 +121,10 @@ class Character extends MovableObject {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
         setTimeout(() => {
-          this.showGameOver();  // Zeige das Game-Over-Bild
-          this.world.gameOver = true;  // Setze einen Flag in der World-Klasse
-          clearInterval(this.intervalId);  
+          this.showGameOver(); // Zeige das Game-Over-Bild
+          this.world.gameOver = true; // Setze einen Flag in der World-Klasse
+          clearInterval(this.intervalId);
         }, 700);
-
-       
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else if (this.world.keyboard.UP && !this.isAboveGround()) {
@@ -162,4 +160,3 @@ class Character extends MovableObject {
     }, 100);
   }
 }
-

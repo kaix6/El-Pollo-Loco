@@ -99,6 +99,7 @@ class World {
     });
   }
 
+
   setWorld() {
     this.character.world = this;
   }
@@ -109,6 +110,10 @@ class World {
       return;
     }
 
+    if (this.youWin) {
+      this.endboss.draw(this.ctx); // Zeichne das Game-Over-Bild
+      return;
+    }
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0);
