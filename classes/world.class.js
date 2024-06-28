@@ -52,7 +52,7 @@ class World {
     // Überprüfe Kollision zwischen Charakter und Feinden
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy) && !enemy.isDead) {
-        if (this.character.isJumpingOn(enemy)) {
+        if (this.character.isJumpingOn(enemy) && !(enemy instanceof Endboss)) {
           enemy.img.src = this.IMAGE_DEAD_BIG;
           enemy.isDead = true;
           setTimeout(() => {
@@ -104,6 +104,11 @@ class World {
   }
 
   draw() {
+    if (this.gameOver) {
+      this.character.draw(this.ctx); // Zeichne das Game-Over-Bild
+      return;
+    }
+
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0);

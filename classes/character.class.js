@@ -87,6 +87,14 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  showGameOver() {
+    this.loadImage(this.IMAGES_GAMEOVER[0]);
+    this.x = 0;
+    this.y = 0;
+    this.width = 720; // Passend zur Canvas-Breite
+    this.height = 480; // Passend zur Canvas-Höhe
+  }
+
   animate() {
     // Walk Speed
     setInterval(() => {
@@ -109,9 +117,16 @@ class Character extends MovableObject {
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
 
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+          this.showGameOver();  // Zeige das Game-Over-Bild
+          this.world.gameOver = true;  // Setze einen Flag in der World-Klasse
+          clearInterval(this.intervalId);  
+        }, 700);
+
+       
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else if (this.world.keyboard.UP && !this.isAboveGround()) {
@@ -147,3 +162,4 @@ class Character extends MovableObject {
     }, 100);
   }
 }
+

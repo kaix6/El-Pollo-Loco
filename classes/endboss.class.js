@@ -56,10 +56,6 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_ANGRY);
       }
       i++;
-      if (world.character.x > 2800 && !hadFirstContact) {
-        i = 0;
-        hadFirstContact = true;
-      }
     }, 180);
     this.moveLeft();
   }

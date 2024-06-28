@@ -75,4 +75,5 @@ function startGame() {
   let gameScreen = document.getElementById("fullscreen");
   startScreen.classList.add("displayNone");
   gameScreen.classList.remove("displayNone");
+  init();
 }
