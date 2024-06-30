@@ -13,36 +13,38 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    <script src="classes/drawable-object.class.js"></script>
-    <script src="classes/movable-object.class.js"></script>
-    <script src="classes/throwable-object.class.js"></script>
-    <script src="classes/coins.class.js"></script>
-    <script src="classes/bottles.class.js"></script>
-    <script src="classes/character.class.js"></script>
-    <script src="classes/chicken.class.js"></script>
-    <script src="classes/chicken-small.class.js"></script>
-    <script src="classes/cloud.class.js"></script>
-    <script src="classes/background-object.class.js"></script>
-    <script src="classes/keyboard.class.js"></script>
-    <script src="classes/status-bar.class.js"></script>
-    <script src="classes/status-bar-coins.class.js"></script>
-    <script src="classes/status-bar-bottles.class.js"></script>
-    <script src="classes/world.class.js"></script>
-    <script src="classes/level.class.js"></script>
-    <script src="classes/endboss.class.js"></script>
-    <script src="levels/level1.js"></script>
-    <script src="js/game.js"></script>
+    <script defer src="classes/drawable-object.class.js"></script>
+    <script defer src="classes/movable-object.class.js"></script>
+    <script defer src="classes/throwable-object.class.js"></script>
+    <script defer src="classes/coins.class.js"></script>
+    <script defer src="classes/bottles.class.js"></script>
+    <script defer src="classes/character.class.js"></script>
+    <script defer src="classes/chicken.class.js"></script>
+    <script defer src="classes/chicken-small.class.js"></script>
+    <script defer src="classes/cloud.class.js"></script>
+    <script defer src="classes/background-object.class.js"></script>
+    <script defer src="classes/keyboard.class.js"></script>
+    <script defer src="classes/status-bar.class.js"></script>
+    <script defer src="classes/status-bar-coins.class.js"></script>
+    <script defer src="classes/status-bar-bottles.class.js"></script>
+    <script defer src="classes/world.class.js"></script>
+    <script defer src="classes/level.class.js"></script>
+    <script defer src="classes/endboss.class.js"></script>
+    <script defer src="levels/level1.js"></script>
+    <script defer src="js/game.js"></script>
   </head>
   <body>
+    <div id="backgroundOutro" class="backgroundOutro displayNone">
+      <div id="outroScreen" class="outroScreen displayNone"></div>
+    </div>
     <div id="startScreen" class="startScreen">
-      <img src="img/startscreen.png" alt="">
+      <img src="img/startscreen.png" alt="" />
 
       <nav>
         <button onclick="startGame()">START</button>
         <a href="impressum.html"><button>IMPRESSUM</button></a>
         <a href="settings.html"><button>SETTINGS</button></a>
       </nav>
-     
     </div>
     <div class="containerCanvas">
       <h1 class="keyboard-layout-big">El Pollo Loco</h1>

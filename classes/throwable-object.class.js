@@ -45,7 +45,6 @@ class ThrowableObject extends MovableObject {
       if (this.energy_bottles >= 0) {
         this.playAnimation(this.IMAGES);
       }
-      console.log(this.y);
       if (this.y >= 350 && !this.hitGround) {
         setTimeout(() => {
           this.hitGround = true;

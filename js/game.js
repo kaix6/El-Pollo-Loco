@@ -1,10 +1,12 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let youWin = false;
+let intervals = [];
 
 function init() {
   canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
+  world = new World(canvas, keyboard, intervals);
 }
 
 window.addEventListener("keydown", (event) => {
@@ -71,9 +73,21 @@ function exitFullscreen() {
 }
 
 function startGame() {
+  drawLevel();
   let startScreen = document.getElementById("startScreen");
   let gameScreen = document.getElementById("fullscreen");
   startScreen.classList.add("displayNone");
   gameScreen.classList.remove("displayNone");
   init();
 }
+
+function outroScreen() {
+  let screen = document.getElementById('backgroundOutro');
+  let img = document.getElementById('outroScreen');
+  if (youWin === true) {
+    screen.classList.remove('displayNone');
+    img.classList.remove('displayNone');
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+  }}

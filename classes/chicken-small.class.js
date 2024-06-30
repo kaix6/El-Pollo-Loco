@@ -30,12 +30,11 @@ isDead = false;
   }
 
   animate() {
-    setInterval(() => {
+   setInterval(() => {
       if (!this.isDead) { 
         this.playAnimation(this.IMAGES_WALKING);
       }
     }, 100);
-
     this.moveLeft();
   }
 }

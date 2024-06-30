@@ -83,7 +83,7 @@ button:hover {
 }
 
 .displayNone {
-  display: none;
+  display: none!important;
 }
 
 button a {
@@ -111,4 +111,29 @@ button a {
   canvas {
     height: 100vh;
   }
+}
+
+.outroScreen {
+  height: 100%;
+  width: 100%;
+  background-image: url(img/9_intro_outro_screens/win/win_2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 999;
+  background-size: contain;
+  /* position: absolute;
+  top: 10px; */
+}
+
+.backgroundOutro {
+  height: 490px;
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  background-color: rgb(199, 154, 42);
+  border-radius: 20px;
 }

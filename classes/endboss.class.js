@@ -57,7 +57,7 @@ class Endboss extends MovableObject {
       }
       i++;
     }, 180);
-    this.moveLeft();
+      this.moveLeft();
   }
 
   hit() {
@@ -75,16 +75,16 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
       }
     }, 100);
-
     setTimeout(() => {
       clearInterval(this.deathAnimationInterval); // Stoppt die Todanimation
       this.endGame();
-    }, 1000); // 1 Sekunde Verzögerung
+    }, 1000);
   }
-
+  
   endGame() {
     clearInterval(this.animationInterval);
     clearInterval(this.deathAnimationInterval);
-    window.location.href = "index.html";
+    youWin = true; // Setze youWin auf true
+    outroScreen(); // Rufe die Funktion auf, um den Bildschirm zu aktualisieren
   }
 }

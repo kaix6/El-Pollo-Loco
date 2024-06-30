@@ -1,4 +1,7 @@
-const level1 = new Level(
+let level1; 
+
+function drawLevel(){
+level1 = new Level(
   [
     new Chicken(),
     new Chicken(),
@@ -80,4 +83,4 @@ const level1 = new Level(
     new Bottels("img/6_salsa_bottle/2_salsa_bottle_on_ground.png"),
     new Bottels("img/6_salsa_bottle/2_salsa_bottle_on_ground.png"),
   ]
-);
+);}

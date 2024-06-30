@@ -97,7 +97,7 @@ class Character extends MovableObject {
 
   animate() {
     // Walk Speed
-    setInterval(() => {
+   this.intervallMusic = setInterval(() => {
       this.background_music.play();
       this.background_music.volume = 0.5;
       this.background_music.loop = true;
@@ -116,6 +116,7 @@ class Character extends MovableObject {
 
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
+    intervals.push(this.intervallMusic);
 
     this.intervalId = setInterval(() => {
       if (this.isDead()) {
@@ -158,5 +159,6 @@ class Character extends MovableObject {
         }
       }
     }, 100);
+    intervals.push(this.intervalId);
   }
 }

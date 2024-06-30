@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
   energy_coins = 0;
   energy_bottles = 0;
   lastHit = 0;
+  intervals;
 
   applyGravity() {
     setInterval(() => {
@@ -104,7 +105,7 @@ class MovableObject extends DrawableObject {
   }
 
   moveLeft() {
-    setInterval(() => {
+    this.moveLeftIntervall = setInterval(() => {
       this.x -= this.speed;
     }, 1000 / 60); // 60FPS
   }
