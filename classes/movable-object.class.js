@@ -19,6 +19,9 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGround() {
+    if (this.speedY === -27) {
+      this.speedY = 0;
+    }
     if (this instanceof ThrowableObject) {
       return this.y < 340;
     } else {
@@ -96,6 +99,7 @@ class MovableObject extends DrawableObject {
     this.otherDirection = false;
     this.walking_sound.play();
     this.walking_sound.volume = 0.05;
+    console.log("Das ist dein speedY" + this.speedY)
   }
   moveLeftCharacter() {
     this.x -= this.speed;

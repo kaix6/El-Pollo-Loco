@@ -82,12 +82,15 @@ function startGame() {
 }
 
 function outroScreen() {
-  let screen = document.getElementById('backgroundOutro');
-  let img = document.getElementById('outroScreen');
+  let screen = document.getElementById("backgroundOutro");
+  let img = document.getElementById("outroScreen");
   if (youWin === true) {
-    screen.classList.remove('displayNone');
-    img.classList.remove('displayNone');
+    screen.classList.remove("displayNone");
+    img.classList.remove("displayNone");
     setTimeout(() => {
       window.location.href = "index.html";
-    }, 1000);
-  }}
+    }, 1500);
+  }
+}
+
+

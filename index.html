@@ -43,14 +43,16 @@
       <nav>
         <button onclick="startGame()">START</button>
         <a href="impressum.html"><button>IMPRESSUM</button></a>
-        <a href="settings.html"><button>SETTINGS</button></a>
+        <a href="settings.html"><button>CONTROL</button></a>
       </nav>
     </div>
+
     <div class="containerCanvas">
       <h1 class="keyboard-layout-big">El Pollo Loco</h1>
       <div id="fullscreen" class="displayNone">
         <canvas id="canvas" width="720" height="480"> </canvas>
         <div class="keyboard-layout">
+          <div class="navbarUnderGame">
           <span
             ><span class="keyboard-layout-big">Left:</span>
             <img src="img/arrow-left.svg" alt="" />/ A</span
@@ -64,13 +66,9 @@
             <img src="img/arrow-up.svg" />/ W /SPACE</span
           >
           <span><span class="keyboard-layout-big">Throw Bottle:</span> F</span>
-          <img
-            class="fullscreen-icon"
-            onclick="fullscreen()"
-            src="img/fullscreen.svg"
-            alt=""
-          />
-          <a class="homeButton" href="index.html">HOME</a>
+          <!-- <img id="toggleImage" src="img/volume-up-fill.svg" alt="music on" onclick="toggleImage()"> -->
+          </div>
+          <a href="index.html"><button>HOME</button></a>
         </div>
       </div>
     </div>

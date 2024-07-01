@@ -97,9 +97,9 @@ class Character extends MovableObject {
 
   animate() {
     // Walk Speed
-   this.intervallMusic = setInterval(() => {
+    this.intervallMusic = setInterval(() => {
       this.background_music.play();
-      this.background_music.volume = 0.5;
+      this.background_music.volume = this.isMuted ? 0 : 0.5;
       this.background_music.loop = true;
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRightCharacter();
@@ -152,7 +152,7 @@ class Character extends MovableObject {
           if (this.longIdle) {
             this.playAnimation(this.IMAGES_LONG_IDLE);
             this.long_idle_sound.play();
-            this.long_idle_sound.volume = 0.3;
+            this.long_idle_sound.volume = this.isMuted ? 0 : 0.3;
           } else {
             this.playAnimation(this.IMAGES_IDLE);
           }
