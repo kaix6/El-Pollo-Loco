@@ -2,9 +2,14 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-image: url('img/background-dessert.jpg');
+  /* background-image: url('img/background-dessert.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  background-color: rgb(247 191 99);
+}
+
+h1 {
+  text-align: center;
 }
 
 .ibm-plex-mono-semibold-italic {
@@ -52,7 +57,7 @@ canvas {
 .startScreen img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: initial;
 }
 
 nav {
@@ -123,21 +128,19 @@ button a {
   background-position: center;
   z-index: 999;
   background-size: contain;
-  /* position: absolute;
-  top: 10px; */
+  position: absolute;
 }
 
 .backgroundOutro {
-  height: 490px;
-  width: 900px;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 10%;
-  left: 20%;
   background-color: rgb(199, 154, 42);
   border-radius: 20px;
+  z-index: 999;
+  position: fixed;
 }
 
 #toggleImage {
@@ -149,4 +152,5 @@ button a {
 .navbarUnderGame {
   display: flex;
   align-items: center;
+  gap: 30px;
 }
