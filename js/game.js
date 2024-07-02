@@ -93,4 +93,20 @@ function outroScreen() {
   }
 }
 
+function windowSize() {
+  let notice = document.getElementById('overlayPortrait');
+  let navbar = document.getElementById('navbar');
+  if (window.innerHeight > window.innerWidth) {
+notice.classList.remove('displayNone')
+navbar.classList.add('displayNone')
+  } else {
+    notice.classList.add('displayNone')
+    navbar.classList.remove('displayNone')
+  }
+}
+
+windowSize();
+
+window.addEventListener('resize', windowSize);
+
 

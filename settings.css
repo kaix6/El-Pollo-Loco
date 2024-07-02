@@ -4,10 +4,10 @@ body {
     font-style: italic;
     margin-left: 20px;
     margin-right: 20px;
-    background-image: url('img/5_background/first_half_background.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: rgb(0, 0, 0);
+  background-image: url("img/5_background/first_half_background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: rgb(0, 0, 0);
 }
 
 .navbar {

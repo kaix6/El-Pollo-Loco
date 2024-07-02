@@ -154,3 +154,25 @@ button a {
   align-items: center;
   gap: 30px;
 }
+
+#overlayPortrait {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(199, 154, 42);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  text-align: center;
+  overflow: hidden;
+  z-index: 9999; /* Sicherstellen, dass das Overlay über allen anderen Elementen liegt */
+}
+
+#overlayPortrait img {
+  height: 100px;
+  width: 100px;
+}
