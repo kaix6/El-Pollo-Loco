@@ -176,3 +176,24 @@ button a {
   height: 100px;
   width: 100px;
 }
+
+.bottleButton {
+  height: 30px;
+  width: 30px;
+}
+
+
+
+@media (max-width:720px) {
+  .keyboard-layout {
+    display: none;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  canvas {
+    width: 100%;
+  }
+}

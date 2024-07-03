@@ -49,6 +49,47 @@ window.addEventListener("keyup", (event) => {
   // console.log(event);
 });
 
+function moveButtonMobile(direction) {
+  if (direction === 'left') {
+      keyboard.LEFT = true;
+  } else if (direction === 'right') {
+      keyboard.RIGHT = true;
+  } else if (direction === 'up') {
+      keyboard.UP = true;
+  } else if (direction === 'action') {
+      keyboard.ACTION = true;
+  }
+  console.log(keyboard);
+}
+
+function stopMoveButtonMobile(direction) {
+  if (direction === 'left') {
+      keyboard.LEFT = false;
+  } else if (direction === 'right') {
+      keyboard.RIGHT = false;
+  } else if (direction === 'up') {
+      keyboard.UP = false;
+  } else if (direction === 'action') {
+      keyboard.ACTION = false;
+  }
+  console.log(keyboard);
+}
+
+function addTouchEvents(buttonId, direction) {
+  const button = document.getElementById(buttonId);
+  button.addEventListener('touchstart', function() {
+      moveButtonMobile(direction);
+  });
+  button.addEventListener('touchend', function() {
+      stopMoveButtonMobile(direction);
+  });
+}
+
+addTouchEvents('leftButton', 'left');
+        addTouchEvents('rightButton', 'right');
+        addTouchEvents('upButton', 'up');
+        addTouchEvents('actionButton', 'action');
+
 function fullscreen() {
   let fullscreen = document.getElementById("fullscreen");
   enterFullscreen(fullscreen);
@@ -109,4 +150,6 @@ windowSize();
 
 window.addEventListener('resize', windowSize);
 
-
+function homeButton() {
+  window.location.href = "index.html";
+}
