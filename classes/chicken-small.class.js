@@ -1,3 +1,7 @@
+/**
+ * Class representing a small chicken enemy.
+ * @extends MovableObject
+ */
 class ChickenSmall extends MovableObject {
   IMAGES_WALKING = [
     "img/3_enemies_chicken/chicken_small/1_walk/1_w.png",
@@ -8,6 +12,9 @@ class ChickenSmall extends MovableObject {
   IMAGE_DEAD = "img/3_enemies_chicken/chicken_small/2_dead/dead.png";
   isDead = false;
 
+  /**
+   * Create a small chicken.
+   */
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_small/1_walk/1_w.png");
 
@@ -21,6 +28,10 @@ class ChickenSmall extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Draw the small chicken on the canvas.
+   * @param {CanvasRenderingContext2D} ctx - The drawing context.
+   */
   draw(ctx) {
     if (this.isDead) {
       this.img.src = this.IMAGE_DEAD;
@@ -28,6 +39,9 @@ class ChickenSmall extends MovableObject {
     super.draw(ctx);
   }
 
+  /**
+   * Animate the small chicken.
+   */
   animate() {
     setInterval(() => {
       if (!this.isDead) {

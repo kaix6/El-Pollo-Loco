@@ -1,5 +1,9 @@
 let level1;
 
+/**
+ * Creates an array of all objects.
+ * @returns {Array} Array of all objects.
+ */
 function drawLevel() {
   level1 = new Level(
     [

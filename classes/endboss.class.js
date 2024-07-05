@@ -1,3 +1,7 @@
+/**
+ * Class representing the end boss.
+ * @extends MovableObject
+ */
 class Endboss extends MovableObject {
   height = 500;
   width = 300;
@@ -35,6 +39,10 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
 
+  /**
+   * Create an end boss.
+   * @param {number} level - The level of the game.
+   */
   constructor(level) {
     super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png");
     this.loadImages(this.IMAGES_WALKING);
@@ -47,6 +55,9 @@ class Endboss extends MovableObject {
     this.hit();
   }
 
+  /**
+   * Animate the end boss.
+   */
   animate() {
     let i = 0;
     this.animationInterval = setInterval(() => {
@@ -57,9 +68,12 @@ class Endboss extends MovableObject {
       }
       i++;
     }, 180);
-      this.moveLeft();
+    this.moveLeft();
   }
 
+  /**
+   * Reduce hit points when hit and check for death.
+   */
   hit() {
     this.hitPoints -= 1;
     if (this.hitPoints <= 0) {
@@ -68,6 +82,9 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+   * Handle the end boss's death.
+   */
   die() {
     clearInterval(this.animationInterval);
     this.deathAnimationInterval = setInterval(() => {
@@ -76,15 +93,18 @@ class Endboss extends MovableObject {
       }
     }, 100);
     setTimeout(() => {
-      clearInterval(this.deathAnimationInterval); 
+      clearInterval(this.deathAnimationInterval);
       this.endGame();
     }, 1000);
   }
-  
+
+  /**
+   * End the game when the end boss is defeated.
+   */
   endGame() {
     clearInterval(this.animationInterval);
     clearInterval(this.deathAnimationInterval);
-    youWin = true; 
-    outroScreen(); 
+    youWin = true;
+    outroScreen();
   }
 }

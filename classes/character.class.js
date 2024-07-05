@@ -1,3 +1,7 @@
+/**
+ * Class representing a character.
+ * @extends MovableObject
+ */
 class Character extends MovableObject {
   IMAGES_WALKING = [
     "img-neu/walk/w21.png",
@@ -70,6 +74,9 @@ class Character extends MovableObject {
   longIdleTimer;
   idlebutton = false;
 
+  /**
+   * Create a character.
+   */
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
     this.y = 280;
@@ -86,6 +93,9 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Display the game over screen.
+   */
   showGameOver() {
     this.loadImage(this.IMAGES_GAMEOVER[0]);
     this.x = 0;
@@ -94,8 +104,10 @@ class Character extends MovableObject {
     this.height = 480;
   }
 
+  /**
+   * Start character animations.
+   */
   animate() {
-    // Walk Speed
     this.intervalMusic();
     intervals.push(this.intervallMusic);
 
@@ -103,6 +115,10 @@ class Character extends MovableObject {
     intervals.push(this.intervalId);
   }
 
+  /**
+   * Play background music at intervals.
+   * @returns {number} The interval ID for background music.
+   */
   intervalMusic() {
     return (this.intervallMusic = setInterval(() => {
       this.background_music.play();
@@ -122,6 +138,9 @@ class Character extends MovableObject {
     }, 1000 / 60));
   }
 
+  /**
+   * Set interval ID for character actions.
+   */
   setIntervalId() {
     this.intervalId = setInterval(() => {
       if (this.isDead()) {
@@ -140,6 +159,9 @@ class Character extends MovableObject {
     }, 100);
   }
 
+  /**
+   * Set timeout to display the game over screen.
+   */
   setTimeoutGameOver() {
     setTimeout(() => {
       this.showGameOver();
@@ -148,6 +170,9 @@ class Character extends MovableObject {
     }, 700);
   }
 
+  /**
+   * Handle character walking animation.
+   */
   walkAnimation() {
     if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
       this.playWalkingAnimation();
@@ -163,6 +188,9 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Play walking animation.
+   */
   playWalkingAnimation() {
     this.playAnimation(this.IMAGES_WALKING);
     this.idlebutton = false;
@@ -170,6 +198,9 @@ class Character extends MovableObject {
     clearTimeout(this.longIdleTimer);
   }
 
+  /**
+   * Play idle animation.
+   */
   playIdleAnimation() {
     this.idlebutton = true;
     this.longIdleTimer = setTimeout(() => {
@@ -177,6 +208,9 @@ class Character extends MovableObject {
     }, 5000);
   }
 
+  /**
+   * Play long idle animation.
+   */
   playLongIdleAnimation() {
     this.playAnimation(this.IMAGES_LONG_IDLE);
     this.long_idle_sound.play();

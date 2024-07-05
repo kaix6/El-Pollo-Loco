@@ -1,6 +1,13 @@
+/**
+ * Class representing a coin.
+ * @extends MovableObject
+ */
 class Coins extends MovableObject {
   IMAGES_WALKING = ["img-neu/coins/c1.png", "img-neu/coins/c2.png"];
 
+  /**
+   * Create a coin.
+   */
   constructor() {
     super().loadImage("img-neu/coins/c1.png");
 
@@ -13,6 +20,9 @@ class Coins extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Animate the coin.
+   */
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_WALKING);

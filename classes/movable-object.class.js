@@ -1,3 +1,6 @@
+/**
+ * Class representing a movable object that extends a drawable object.
+ */
 class MovableObject extends DrawableObject {
   speed = 0.3;
   otherDirection = false;
@@ -9,6 +12,9 @@ class MovableObject extends DrawableObject {
   lastHit = 0;
   intervals;
 
+  /**
+   * Applies gravity to the object.
+   */
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -18,6 +24,10 @@ class MovableObject extends DrawableObject {
     }, 1000 / 25);
   }
 
+  /**
+   * Checks if the object is above ground.
+   * @returns {boolean} True if the object is above ground, false otherwise.
+   */
   isAboveGround() {
     if (this.speedY === -27) {
       this.speedY = 0;
@@ -29,6 +39,11 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Checks if the object is colliding with another movable object.
+   * @param {MovableObject} mo - The other movable object.
+   * @returns {boolean} True if the objects are colliding, false otherwise.
+   */
   isColliding(mo) {
     return (
       this.x + this.width > mo.x &&
@@ -38,6 +53,9 @@ class MovableObject extends DrawableObject {
     );
   }
 
+  /**
+   * Reduces the energy of the object when hit and plays the hurt sound.
+   */
   hit() {
     this.energy -= 5;
 
@@ -54,6 +72,9 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Increases the energy coins when collected and plays the coins sound.
+   */
   collectCoins() {
     this.energy_coins += 10;
 
@@ -69,6 +90,9 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Increases the energy bottles when collected and plays the bottles sound.
+   */
   collectBottles() {
     this.energy_bottles += 10;
 
@@ -79,28 +103,44 @@ class MovableObject extends DrawableObject {
       this.bottles_sound.volume = 0.1;
       setTimeout(() => {
         this.bottles_sound.pause();
-        this.bottles_sound.currentTime = 0; 
+        this.bottles_sound.currentTime = 0;
       }, 1000);
     }
   }
 
+  /**
+   * Checks if the object is hurt.
+   * @returns {boolean} True if the object is hurt, false otherwise.
+   */
   isHurt() {
-    let timepassed = new Date().getTime() - this.lastHit; 
-    timepassed = timepassed / 1000; 
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
     return timepassed < 0.5;
   }
+
+  /**
+   * Checks if the object is dead.
+   * @returns {boolean} True if the object is dead, false otherwise.
+   */
 
   isDead() {
     return this.energy == 0;
   }
 
+  /**
+   * Moves the character to the right.
+   */
   moveRightCharacter() {
     this.x += this.speed;
     this.otherDirection = false;
     this.walking_sound.play();
     this.walking_sound.volume = 0.05;
   }
-  
+
+  /**
+   * Moves the character to the left.
+   */
+
   moveLeftCharacter() {
     this.x -= this.speed;
     this.otherDirection = true;
@@ -108,27 +148,43 @@ class MovableObject extends DrawableObject {
     this.walking_sound.volume = 0.05;
   }
 
+  /**
+   * Continuously moves the object to the left.
+   */
+
   moveLeft() {
     this.moveLeftIntervall = setInterval(() => {
       this.x -= this.speed;
-    }, 1000 / 60); 
+    }, 1000 / 60);
   }
 
+  /**
+   * Makes the object jump.
+   */
   jump() {
     this.speedY = 25;
     this.walking_sound.pause();
   }
 
+  /**
+   * Plays an animation using the provided images.
+   * @param {Array} images - The images for the animation.
+   */
   playAnimation(images) {
-    let i = this.currentImage % images.length; 
+    let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
   }
 
+  /**
+   * Checks if the object is jumping on another movable object.
+   * @param {MovableObject} mo - The other movable object.
+   * @returns {boolean} True if the object is jumping on the other object, false otherwise.
+   */
   isJumpingOn(mo) {
     return (
-      this.speedY < 0 && 
+      this.speedY < 0 &&
       this.x + this.width > mo.x &&
       this.y + this.height > mo.y &&
       this.x < mo.x + mo.width &&

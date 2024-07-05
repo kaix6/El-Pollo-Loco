@@ -1,3 +1,6 @@
+/**
+ * Class representing a throwable object in the game, such as a bottle.
+ */
 class ThrowableObject extends MovableObject {
   IMAGES = [
     "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
@@ -20,6 +23,13 @@ class ThrowableObject extends MovableObject {
   hitGround = false;
   groundHitAnimationPlayed = false;
 
+  /**
+   * Creates a new throwable object.
+   * @param {number} x - The x-coordinate of the object.
+   * @param {number} y - The y-coordinate of the object.
+   * @param {object} game - The game object.
+   * @param {object} level - The level object.
+   */
   constructor(x, y, game, level) {
     super().loadImage(
       "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png"
@@ -36,6 +46,9 @@ class ThrowableObject extends MovableObject {
     this.throw();
   }
 
+  /**
+   * Initiates the throwing action and applies gravity to the object.
+   */
   throw() {
     this.speedY = 30;
     this.applyGravity();
@@ -43,7 +56,8 @@ class ThrowableObject extends MovableObject {
     this.throwInterval = setInterval(() => {
       if (this.energy_bottles >= 0) {
         this.playAnimation(this.IMAGES);
-      } if (this.y >= 350 && !this.hitGround) {
+      }
+      if (this.y >= 350 && !this.hitGround) {
         setTimeout(() => {
           this.hitGround = true;
           this.playGroundHitAnimation();
@@ -53,6 +67,9 @@ class ThrowableObject extends MovableObject {
     }, 50);
   }
 
+  /**
+   * Plays the ground hit animation when the object hits the ground.
+   */
   playGroundHitAnimation() {
     if (!this.groundHitAnimationPlayed) {
       this.playAnimation(this.IMAGES_BOTTLE_HIT_GROUND);

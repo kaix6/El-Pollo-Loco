@@ -4,43 +4,64 @@ let keyboard = new Keyboard();
 let youWin = false;
 let intervals = [];
 
+/**
+ * Initializes the game setup.
+ */
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard, intervals);
 }
 
+/**
+ * Sets up keyboard controls.
+ * @param {KeyboardEvent} event - The keyboard event.
+ */
 window.addEventListener("keydown", (event) => {
   if (event.code == "ArrowRight" || event.code == "KeyD") {
     keyboard.RIGHT = true;
-  } if (event.code == "ArrowLeft" || event.code == "KeyA") {
+  }
+  if (event.code == "ArrowLeft" || event.code == "KeyA") {
     keyboard.LEFT = true;
-  } if (
+  }
+  if (
     event.code == "Space" ||
     event.code == "KeyW" ||
     event.code == "ArrowUp"
   ) {
     keyboard.UP = true;
-  } if (event.code == "KeyF") {
+  }
+  if (event.code == "KeyF") {
     keyboard.THROW = true;
   }
 });
 
+/**
+ * Sets up keyboard controls.
+ * @param {KeyboardEvent} event - The keyboard event.
+ */
 window.addEventListener("keyup", (event) => {
   if (event.code == "ArrowRight" || event.code == "KeyD") {
     keyboard.RIGHT = false;
-  } if (event.code == "ArrowLeft" || event.code == "KeyA") {
+  }
+  if (event.code == "ArrowLeft" || event.code == "KeyA") {
     keyboard.LEFT = false;
-  } if (
+  }
+  if (
     event.code == "Space" ||
     event.code == "KeyW" ||
     event.code == "ArrowUp"
   ) {
     keyboard.UP = false;
-  } if (event.code == "KeyF") {
+  }
+  if (event.code == "KeyF") {
     keyboard.THROW = false;
   }
 });
 
+/**
+ * Sets mobile control actions.
+ * @param {string} direction - The direction of the mobile control.
+ */
 function moveButtonMobile(direction) {
   if (direction === "left") {
     keyboard.LEFT = true;
@@ -53,6 +74,10 @@ function moveButtonMobile(direction) {
   }
 }
 
+/**
+ * Stops mobile control actions.
+ * @param {string} direction - The direction of the mobile control.
+ */
 function stopMoveButtonMobile(direction) {
   if (direction === "left") {
     keyboard.LEFT = false;
@@ -65,6 +90,11 @@ function stopMoveButtonMobile(direction) {
   }
 }
 
+/**
+ * Adds touch event listeners to mobile control buttons.
+ * @param {string} buttonId - The ID of the button.
+ * @param {string} direction - The direction or action of the button.
+ */
 function addTouchEvents(buttonId, direction) {
   const button = document.getElementById(buttonId);
   button.addEventListener("touchstart", function () {
@@ -80,11 +110,19 @@ addTouchEvents("rightButton", "right");
 addTouchEvents("upButton", "up");
 addTouchEvents("actionButton", "action");
 
+/**
+ * Toggles fullscreen mode for the given element.
+ * @param {HTMLElement} element - The element to toggle fullscreen.
+ */
 function fullscreen() {
   let fullscreen = document.getElementById("fullscreen");
   enterFullscreen(fullscreen);
 }
 
+/**
+ * Toggles fullscreen mode for the given element.
+ * @param {HTMLElement} element - The element to toggle fullscreen.
+ */
 function enterFullscreen(element) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
@@ -95,6 +133,9 @@ function enterFullscreen(element) {
   }
 }
 
+/**
+ * Exits fullscreen mode.
+ */
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -103,6 +144,9 @@ function exitFullscreen() {
   }
 }
 
+/**
+ * Starts the game by showing the game screen and initializing the game world.
+ */
 function startGame() {
   drawLevel();
   let startScreen = document.getElementById("startScreen");
@@ -112,6 +156,9 @@ function startGame() {
   init();
 }
 
+/**
+ * Displays the outro screen if the player has won.
+ */
 function outroScreen() {
   let screen = document.getElementById("backgroundOutro");
   let img = document.getElementById("outroScreen");
@@ -124,6 +171,9 @@ function outroScreen() {
   }
 }
 
+/**
+ * Adjusts UI elements based on the window size.
+ */
 function windowSize() {
   let notice = document.getElementById("overlayPortrait");
   let navbar = document.getElementById("navbar");
@@ -140,10 +190,16 @@ windowSize();
 
 window.addEventListener("resize", windowSize);
 
+/**
+ * Navigates to the home page.
+ */
 function homeButton() {
   window.location.href = "index.html";
 }
 
+/**
+ * Prevents context menu and touch start events on images.
+ */
 document.addEventListener("DOMContentLoaded", function () {
   let images = document.querySelectorAll("#ButtonsUnderGame img");
   images.forEach(function (img) {
@@ -163,12 +219,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+/**
+ * Checks if the user is on a mobile device.
+ * @returns {boolean} True if the user is on a mobile device, false otherwise.
+ */
 function isMobileDevice() {
   return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   );
 }
 
+/**
+ * Shows or hides mobile control buttons based on device type.
+ */
 function showButtonsMobile() {
   let buttonArea = document.getElementById("ButtonsUnderGame");
   let headline = document.getElementById("headline");
@@ -188,12 +251,18 @@ document.addEventListener("DOMContentLoaded", function () {
   showButtonsMobile();
 });
 
+/**
+ * Opens the settings overlay.
+ */
 function openWindowSettings() {
   const overlay = document.getElementById("overlayControl");
   overlay.classList.remove("hide");
   overlay.classList.add("show");
 }
 
+/**
+ * Closes the settings overlay.
+ */
 function closeWindowSettings() {
   const overlay = document.getElementById("overlayControl");
   overlay.classList.remove("show");
