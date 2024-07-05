@@ -1,5 +1,5 @@
 class Coins extends MovableObject {
-  IMAGES_WALKING = ['img-neu/coins/c1.png', 'img-neu/coins/c2.png'];
+  IMAGES_WALKING = ["img-neu/coins/c1.png", "img-neu/coins/c2.png"];
 
   constructor() {
     super().loadImage("img-neu/coins/c1.png");

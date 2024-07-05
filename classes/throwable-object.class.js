@@ -40,12 +40,10 @@ class ThrowableObject extends MovableObject {
     this.speedY = 30;
     this.applyGravity();
     this.hitGround = false;
-
     this.throwInterval = setInterval(() => {
       if (this.energy_bottles >= 0) {
         this.playAnimation(this.IMAGES);
-      }
-      if (this.y >= 350 && !this.hitGround) {
+      } if (this.y >= 350 && !this.hitGround) {
         setTimeout(() => {
           this.hitGround = true;
           this.playGroundHitAnimation();
