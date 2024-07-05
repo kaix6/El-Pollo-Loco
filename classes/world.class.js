@@ -107,13 +107,13 @@ class World {
 
   draw() {
     if (this.gameOver) {
-      this.character.draw(this.ctx); // Zeichne das Game-Over-Bild
+      this.character.draw(this.ctx);
       return;
     }
 
      
       if (this.youWin) {
-        outroScreen(); // Rufe die Funktion auf, um den Bildschirm zu aktualisieren
+        outroScreen(); 
         this.character.draw(this.ctx)
         return;
       }
@@ -156,15 +156,12 @@ class World {
     }
 
     mo.draw(this.ctx);
-    // mo.drawFrame(this.ctx);
-
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }
   }
 
   flipImage(mo) {
-    // bild spiegeln
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
     this.ctx.scale(-1, 1);

@@ -43,46 +43,91 @@
       <nav id="navbar">
         <button onclick="startGame()">START</button>
         <a href="impressum.html"><button>IMPRESSUM</button></a>
-        <a href="settings.html"><button>CONTROL</button></a>
+        <button onclick="openWindowSettings()">CONTROL</button>
       </nav>
     </div>
 
-    <div class="containerCanvas">
-      <!-- <h1 class="keyboard-layout-big">El Pollo Loco</h1> -->
+    <div id="containerCanvasMobile" class="containerCanvas">
+      <h1 id="headline" class="keyboard-layout-big">El Pollo Loco</h1>
       <div id="fullscreen" class="displayNone">
         <canvas id="canvas" width="720" height="480"> </canvas>
-        <!-- <div class="keyboard-layout">
+        <div id="infoNavbar" class="keyboard-layout">
           <div class="navbarUnderGame">
-          <span
-            ><span class="keyboard-layout-big">Left:</span>
-            <img src="img/arrow-left.svg" alt="" />/ A</span
-          >
-          <span
-            ><span class="keyboard-layout-big">Right:</span>
-            <img src="img/arrow-right.svg" alt="" />/ D</span
-          >
-          <span
-            ><span class="keyboard-layout-big">Jump:</span>
-            <img src="img/arrow-up.svg" />/ W /SPACE</span
-          >
-          <span><span class="keyboard-layout-big">Throw Bottle:</span> F</span>
-          
+            <span
+              ><span class="keyboard-layout-big">Left:</span>
+              <img src="img/arrow-left.svg" alt="" />/ A</span
+            >
+            <span
+              ><span class="keyboard-layout-big">Right:</span>
+              <img src="img/arrow-right.svg" alt="" />/ D</span
+            >
+            <span
+              ><span class="keyboard-layout-big">Jump:</span>
+              <img src="img/arrow-up.svg" />/ W /SPACE</span
+            >
+            <span
+              ><span class="keyboard-layout-big">Throw Bottle:</span> F</span
+            >
           </div>
           <a href="index.html"><button>HOME</button></a>
-        </div> -->
+        </div>
 
-        <div id="ButtonsUnderGame">
-          <button id="leftButton"><img src="img/arrow-left.svg" alt=""></button>
-          <button id="rightButton"><img src="img/arrow-right.svg" alt=""></button>
-          <button id="upButton"><img src="img/arrow-up.svg" alt=""></button>
-          <button id="actionButton"><img class="bottleButton" src="img/6_salsa_bottle/2_salsa_bottle_on_ground.png" alt=""></button>
-      </div>
+        <div class="position">
+          <div id="ButtonsUnderGame" class="displayNone">
+            <div class="buttonLeft">
+              <button id="leftButton">
+                <img src="img/arrow-left.svg" alt="" />
+              </button>
+              <button id="rightButton">
+                <img src="img/arrow-right.svg" alt="" />
+              </button>
+            </div>
+            <a href="index.html"><button class="buttonMiddle">HOME</button></a>
+            <div class="buttonRight">
+              <button id="upButton">
+                <img src="img/arrow-up.svg" alt="" />
+              </button>
+              <button id="actionButton">
+                <img
+                  class="bottleButton"
+                  src="img/6_salsa_bottle/2_salsa_bottle_on_ground.png"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-  <div id="overlayPortrait" class="displayNone">
-<img src="img/phone-landscape.svg" alt="">
-<p>Please turn your Phone <br> to play the Game</p>
-  </div>
+    <div id="overlayPortrait" class="displayNone">
+      <img src="img/phone-landscape.svg" alt="" />
+      <p>
+        Please turn your Phone <br />
+        to play the Game
+      </p>
+    </div>
+
+    <div id="overlayControl">
+      <div class="settingsBox">
+        <div class="imgPosition">
+        <img onclick="closeWindowSettings()" class="imgSettings" src="img/x.svg" alt="" />
+        </div>
+        <div class="textSettings">
+          <div class="leftSide">
+            <span>Move Left:</span>
+            <span>Move Right:</span>
+            <span>Jump:</span>
+            <span>Throw Bottle:</span>
+          </div>
+          <div class="rightSide">
+            <span>Arrow Left or A</span>
+            <span>Arrow Right or D</span>
+            <span>Arrow Up or W or SPACE</span>
+            <span>F</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

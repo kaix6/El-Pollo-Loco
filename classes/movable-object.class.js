@@ -79,14 +79,14 @@ class MovableObject extends DrawableObject {
       this.bottles_sound.volume = 0.1;
       setTimeout(() => {
         this.bottles_sound.pause();
-        this.bottles_sound.currentTime = 0; // Setzt den Sound zurück zum Start
+        this.bottles_sound.currentTime = 0; 
       }, 1000);
     }
   }
 
   isHurt() {
-    let timepassed = new Date().getTime() - this.lastHit; // difference in ms
-    timepassed = timepassed / 1000; // difference in s
+    let timepassed = new Date().getTime() - this.lastHit; 
+    timepassed = timepassed / 1000; 
     return timepassed < 0.5;
   }
 
@@ -111,7 +111,7 @@ class MovableObject extends DrawableObject {
   moveLeft() {
     this.moveLeftIntervall = setInterval(() => {
       this.x -= this.speed;
-    }, 1000 / 60); // 60FPS
+    }, 1000 / 60); 
   }
 
   jump() {
@@ -120,7 +120,7 @@ class MovableObject extends DrawableObject {
   }
 
   playAnimation(images) {
-    let i = this.currentImage % images.length; // let i = 0 % 6; // i = 0, 1, 2, 3, 4, 5, 0, 1, 2, ...
+    let i = this.currentImage % images.length; 
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
@@ -128,7 +128,7 @@ class MovableObject extends DrawableObject {
 
   isJumpingOn(mo) {
     return (
-      this.speedY < 0 && // Überprüft, ob der Charakter fällt
+      this.speedY < 0 && 
       this.x + this.width > mo.x &&
       this.y + this.height > mo.y &&
       this.x < mo.x + mo.width &&

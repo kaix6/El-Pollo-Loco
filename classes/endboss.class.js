@@ -42,7 +42,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_DEAD);
     this.x = 719 * 3 + 200;
     this.speed = 0.3 + Math.random() * 0.25;
-    this.level = level; // Referenz auf das Level-Objekt speichern
+    this.level = level;
     this.animate();
     this.hit();
   }
@@ -69,14 +69,14 @@ class Endboss extends MovableObject {
   }
 
   die() {
-    clearInterval(this.animationInterval); // Stoppt die Animation
+    clearInterval(this.animationInterval);
     this.deathAnimationInterval = setInterval(() => {
       if (this.isDead) {
         this.playAnimation(this.IMAGES_DEAD);
       }
     }, 100);
     setTimeout(() => {
-      clearInterval(this.deathAnimationInterval); // Stoppt die Todanimation
+      clearInterval(this.deathAnimationInterval); 
       this.endGame();
     }, 1000);
   }
@@ -84,7 +84,7 @@ class Endboss extends MovableObject {
   endGame() {
     clearInterval(this.animationInterval);
     clearInterval(this.deathAnimationInterval);
-    youWin = true; // Setze youWin auf true
-    outroScreen(); // Rufe die Funktion auf, um den Bildschirm zu aktualisieren
+    youWin = true; 
+    outroScreen(); 
   }
 }

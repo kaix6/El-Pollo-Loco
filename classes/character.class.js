@@ -72,8 +72,8 @@ class Character extends MovableObject {
 
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
-    this.y = 280; // 200
-    this.height = 150; // 230
+    this.y = 280; 
+    this.height = 150;
     this.width = 100;
 
     this.loadImages(this.IMAGES_DEAD);
@@ -91,8 +91,8 @@ class Character extends MovableObject {
     this.loadImage(this.IMAGES_GAMEOVER[0]);
     this.x = 0;
     this.y = 0;
-    this.width = 720; // Passend zur Canvas-Breite
-    this.height = 480; // Passend zur Canvas-Höhe
+    this.width = 720; 
+    this.height = 480;
   }
 
   animate() {
@@ -122,8 +122,8 @@ class Character extends MovableObject {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
         setTimeout(() => {
-          this.showGameOver(); // Zeige das Game-Over-Bild
-          this.world.gameOver = true; // Setze einen Flag in der World-Klasse
+          this.showGameOver();
+          this.world.gameOver = true; 
           clearInterval(this.intervalId);
         }, 700);
       } else if (this.isHurt()) {

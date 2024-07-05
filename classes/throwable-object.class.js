@@ -28,8 +28,8 @@ class ThrowableObject extends MovableObject {
     this.y = y;
     this.height = 70;
     this.width = 60;
-    this.game = game; // Referenz auf das Spielobjekt
-    this.level = level; // Referenz auf das Levelobjekt
+    this.game = game;
+    this.level = level;
     this.loadImages(this.IMAGES);
     this.loadImages(this.IMAGES_BOTTLE_HIT_GROUND);
     this.loadImages(this.IMAGES_DELETE);

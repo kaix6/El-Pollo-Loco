@@ -26,7 +26,6 @@ window.addEventListener("keydown", (event) => {
   if (event.code == "KeyF") {
     keyboard.THROW = true;
   }
-  // console.log(event);
 });
 
 window.addEventListener("keyup", (event) => {
@@ -46,7 +45,6 @@ window.addEventListener("keyup", (event) => {
   if (event.code == "KeyF") {
     keyboard.THROW = false;
   }
-  // console.log(event);
 });
 
 function moveButtonMobile(direction) {
@@ -57,9 +55,8 @@ function moveButtonMobile(direction) {
   } else if (direction === 'up') {
       keyboard.UP = true;
   } else if (direction === 'action') {
-      keyboard.ACTION = true;
+      keyboard.THROW = true;
   }
-  console.log(keyboard);
 }
 
 function stopMoveButtonMobile(direction) {
@@ -70,9 +67,8 @@ function stopMoveButtonMobile(direction) {
   } else if (direction === 'up') {
       keyboard.UP = false;
   } else if (direction === 'action') {
-      keyboard.ACTION = false;
+      keyboard.THROW = false;
   }
-  console.log(keyboard);
 }
 
 function addTouchEvents(buttonId, direction) {
@@ -152,4 +148,54 @@ window.addEventListener('resize', windowSize);
 
 function homeButton() {
   window.location.href = "index.html";
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var images = document.querySelectorAll('#ButtonsUnderGame img');
+  images.forEach(function(img) {
+    img.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+    img.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+    }, {passive: false});
+    img.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+    });
+  });
+});
+
+function isMobileDevice() {
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+function showButtonsMobile() {
+  let buttonArea = document.getElementById('ButtonsUnderGame');
+  let headline = document.getElementById('headline')
+  let navbar = document.getElementById('infoNavbar')
+  if (isMobileDevice()) {
+    buttonArea.classList.remove('displayNone');
+    headline.classList.add('displayNone')
+    navbar.classList.add('displayNone')
+  } else {
+    buttonArea.classList.add('displayNone');
+    headline.classList.remove('displayNone')
+    navbar.classList.remove('displayNone')
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  showButtonsMobile();
+});
+
+function openWindowSettings() {
+  const overlay = document.getElementById('overlayControl');
+  overlay.classList.remove('hide');
+  overlay.classList.add('show');
+}
+
+function closeWindowSettings() {
+  const overlay = document.getElementById('overlayControl');
+  overlay.classList.remove('show');
+  overlay.classList.add('hide');
 }

@@ -2,10 +2,8 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* background-image: url('img/background-dessert.jpg');
-  background-repeat: no-repeat;
-  background-size: cover; */
   background-color: rgb(247 191 99);
+  overflow: hidden;
 }
 
 h1 {
@@ -169,7 +167,7 @@ button a {
   font-size: 40px;
   text-align: center;
   overflow: hidden;
-  z-index: 9999; /* Sicherstellen, dass das Overlay über allen anderen Elementen liegt */
+  z-index: 9999;
 }
 
 #overlayPortrait img {
@@ -182,6 +180,154 @@ button a {
   width: 30px;
 }
 
+#ButtonsUnderGame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonLeft, .buttonRight {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard */
+  -webkit-touch-callout: none; /* iOS Safari */
+}
+
+button {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard */
+  -webkit-touch-callout: none; /* iOS Safari */
+}
+
+#containerCanvasMobile {
+  height: 100vh;
+}
+
+.position {
+  position: absolute;
+  bottom: -35px;
+  left: 20px;
+  right: 20px;
+}
+
+#leftButton,
+#rightButton,
+#upButton,
+#actionButton {
+  width: 45px;
+  height: 45px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonMiddle {
+  font-size: 20px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#overlayControl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden; /* Initially hidden */
+  transform: translateX(100%); /* Start off-screen */
+  transition: visibility 0.3s ease-out;
+}
+
+#overlayControl.show {
+  visibility: visible;
+  animation: slideIn 0.5s forwards;
+}
+
+#overlayControl.hide {
+  animation: slideOut 0.5s forwards;
+  visibility: hidden;
+}
+
+.settingsBox {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: rgb(174 211 226);
+  height: 400px;
+  width: 700px; 
+  border-radius: 20px;
+  font-size: 30px;
+}
+
+.leftSide, .rightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.textSettings {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 120px;
+}
+
+.imgSettings {
+  height: 40px;
+  width: 40px;
+}
+
+.imgSettings:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.imgPosition {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+
+
+
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
 
 
 @media (max-width:720px) {
