@@ -38,7 +38,6 @@ class World {
         this.character.x + 60,
         this.character.y + 100
       );
-
       this.throwableObject.push(bottle);
       this.throw_sound.play();
       this.throw_sound.volume = 0.1;
@@ -50,8 +49,14 @@ class World {
   checkCollisions() {
     this.isDead = false;
 
-    // Überprüfe Kollision zwischen Charakter und Feinden
-    this.level.enemies.forEach((enemy) => {
+    this.checkCollisionsEnemy();
+    this.checkCollisionsBottleEndboss();
+    this.checkCollisionsCoins();
+    this.checkCollisionsBottle();
+  }
+
+  checkCollisionsEnemy() {
+    return this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy) && !enemy.isDead) {
         if (this.character.isJumpingOn(enemy) && !(enemy instanceof Endboss)) {
           enemy.img.src = this.IMAGE_DEAD_BIG;
@@ -66,40 +71,42 @@ class World {
         }
       }
     });
+  }
 
-    // Überprüfe Kollision zwischen Flaschen und Endboss
-    this.throwableObject.forEach((bottle) => {
+  checkCollisionsBottleEndboss() {
+    return this.throwableObject.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
         if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
           enemy.hit();
           this.throwableObject = this.throwableObject.filter(
             (b) => b !== bottle
-          ); // Entferne die Flasche
+          );
         }
       });
     });
+  }
 
-    // Überprüfe Kollision zwischen Charakter und Münzen
-    this.level.coins = this.level.coins.filter((coin) => {
+  checkCollisionsCoins() {
+    return (this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
         this.character.collectCoins();
         this.statusBarCoins.setPercentage(this.character.energy_coins);
         return false;
       }
       return true;
-    });
+    }));
+  }
 
-    // Überprüfe Kollision zwischen Charakter und Flaschen
-    this.level.bottles = this.level.bottles.filter((bottle) => {
+  checkCollisionsBottle() {
+    return (this.level.bottles = this.level.bottles.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
         this.character.collectBottles();
         this.statusBarBottles.setPercentage(this.character.energy_bottles);
         return false;
       }
       return true;
-    });
+    }));
   }
-
 
   setWorld() {
     this.character.world = this;
@@ -109,18 +116,21 @@ class World {
     if (this.gameOver) {
       this.character.draw(this.ctx);
       return;
+    } if (this.youWin) {
+      outroScreen();
+      this.character.draw(this.ctx);
+      return;
     }
-
-     
-      if (this.youWin) {
-        outroScreen(); 
-        this.character.draw(this.ctx)
-        return;
-      }
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
+   this.drawAddObjectsToMap();
+    let self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
 
+  drawAddObjectsToMap() {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
@@ -128,7 +138,6 @@ class World {
     this.addObjectsToMap(this.level.bottles);
     this.addToMap(this.character);
     this.addObjectsToMap(this.throwableObject);
-
     this.ctx.translate(-this.camera_x, 0); // back
     // ---------- Space for fixed Objects -----------
     this.addToMap(this.statusBar);
@@ -136,12 +145,7 @@ class World {
     this.addToMap(this.statusBarBottles);
     // ---------- Space for fixed Objects End -----------
     this.ctx.translate(this.camera_x, 0); // forwards
-
     this.ctx.translate(-this.camera_x, 0);
-    let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
   }
 
   addObjectsToMap(objects) {
