@@ -91,6 +91,19 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_GAMEOVER);
     this.applyGravity();
     this.animate();
+    this.isMuted = false; // Initialer Zustand für Mute
+  }
+
+
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+    const volume = this.isMuted ? 0 : 1;
+    this.walking_sound.volume = volume;
+    this.hurt_sound.volume = volume;
+    this.coins_sound.volume = volume;
+    this.bottles_sound.volume = volume;
+    this.long_idle_sound.volume = volume;
+    this.background_music.volume = this.isMuted ? 0 : 0.5;
   }
 
   /**
@@ -108,12 +121,16 @@ class Character extends MovableObject {
    * Start character animations.
    */
   animate() {
-    this.intervalMusic();
-    intervals.push(this.intervallMusic);
-
-    this.setIntervalId();
+this.setIntervalId();
     intervals.push(this.intervalId);
   }
+
+
+  startMusic() {
+    this.intervalMusic();
+    intervals.push(this.intervallMusic);
+  }
+
 
   /**
    * Play background music at intervals.
@@ -141,23 +158,23 @@ class Character extends MovableObject {
   /**
    * Set interval ID for character actions.
    */
-  setIntervalId() {
-    this.intervalId = setInterval(() => {
-      if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
-        this.setTimeoutGameOver();
-      } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT);
-      } else if (this.world.keyboard.UP && !this.isAboveGround()) {
-        this.jump();
-      } else if (this.isAboveGround()) {
-        this.playAnimation(this.IMAGES_JUMPING);
-        this.long_idle_sound.pause();
-      } else {
-        this.walkAnimation();
-      }
-    }, 100);
-  }
+setIntervalId() {
+  this.intervalId = setInterval(() => {
+    if (this.isDead()) {
+      this.playAnimation(this.IMAGES_DEAD);
+      this.setTimeoutGameOver();
+    } else if (this.isHurt()) {
+      this.playAnimation(this.IMAGES_HURT);
+    } else if (this.world.keyboard.UP && !this.isAboveGround()) {
+      this.jump();
+    } else if (this.isAboveGround()) {
+      this.playAnimation(this.IMAGES_JUMPING);
+      this.long_idle_sound.pause();
+    } else {
+      this.walkAnimation();
+    }
+  }, 100);
+}
 
   /**
    * Set timeout to display the game over screen.

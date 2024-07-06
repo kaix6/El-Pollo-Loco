@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let youWin = false;
 let intervals = [];
+let character = new Character();
 
 /**
  * Initializes the game setup.
@@ -10,6 +11,7 @@ let intervals = [];
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard, intervals);
+  character = world.character;
 }
 
 /**
@@ -154,6 +156,7 @@ function startGame() {
   startScreen.classList.add("displayNone");
   gameScreen.classList.remove("displayNone");
   init();
+  character.startMusic(); // Start the background music
 }
 
 /**
@@ -268,3 +271,20 @@ function closeWindowSettings() {
   overlay.classList.remove("show");
   overlay.classList.add("hide");
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const volumeIcon = document.getElementById('volume-icon');
+  let isMuted = false;
+
+  volumeIcon.addEventListener('click', () => {
+    if (isMuted) {
+      volumeIcon.src = 'img/volume-up-fill.svg';
+      console.log('spiel laut');
+    } else {
+      volumeIcon.src = 'img/volume-mute-fill.svg';
+      console.log('spiel mute');
+    }
+    character.toggleMute(); // Verwende die globale Instanz
+    isMuted = !isMuted;
+  });
+});

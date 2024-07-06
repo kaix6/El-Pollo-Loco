@@ -24,23 +24,27 @@ class World {
    * @param {HTMLCanvasElement} canvas - The canvas element for rendering.
    * @param {Keyboard} keyboard - The keyboard object for input handling.
    */
-  constructor(canvas, keyboard) {
+  constructor(canvas, keyboard, intervals) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.intervals = intervals; // Vergiss nicht, intervals zuzuweisen
+    this.character = new Character(); // Initialisiere hier die Character-Instanz
     this.draw();
     this.setWorld();
     this.run();
   }
 
+
   /**
    * Main game loop, runs periodically.
    */
   run() {
-    setInterval(() => {
+    this.intervalGameLoop = setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
     }, 200);
+    intervals.push(this.intervalGameLoop);
   }
 
   /**
