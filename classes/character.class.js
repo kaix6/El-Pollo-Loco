@@ -79,7 +79,7 @@ class Character extends MovableObject {
    * Create a character.
    */
   constructor() {
-    super().loadImage("img/2_character_pepe/2_walk/W-21.png");
+    super().loadImage("img-neu/walk/w21.png");
     this.y = 280;
     this.height = 150;
     this.width = 100;
@@ -91,10 +91,14 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_GAMEOVER);
     this.applyGravity();
-    // this.animate();
-    this.isMuted = false; // Initialer Zustand für Mute
+    this.isMuted = false;
   }
 
+  /**
+   * Toggles the mute state for all sounds and background music.
+   *
+   * @memberof YourClassName
+   */
   toggleMute() {
     this.isMuted = !this.isMuted;
     const volume = this.isMuted ? 0 : 1;
@@ -117,14 +121,6 @@ class Character extends MovableObject {
     this.height = 480;
   }
 
-  /**
-   * Start character animations.
-   */
-  // animate() {
-  //   this.setIntervalId();
-  //   intervals.push(this.intervalId);
-  // }
-
   startMusic() {
     this.intervalMusic();
     intervals.push(this.intervallMusic);
@@ -132,6 +128,14 @@ class Character extends MovableObject {
     intervals.push(this.intervalId);
   }
 
+  /**
+   * Pauses the background music.
+   *
+   * This method stops the playback of the `background_music` by pausing it.
+   * The music will resume from the point it was paused if `play()` is called again.
+   *
+   * @memberof YourClassName
+   */
   stopMusic() {
     this.background_music.pause();
   }
@@ -160,10 +164,6 @@ class Character extends MovableObject {
         clearTimeout(this.longIdleTimer);
       }
 
-      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        this.playWalkingAnimation();
-        clearTimeout(this.longIdleTimer);
-      }
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60));
   }
@@ -181,8 +181,9 @@ class Character extends MovableObject {
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
         this.long_idle_sound.pause();
-      } else {
-        this.walkAnimation();
+      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        this.playWalkingAnimation();
+        clearTimeout(this.longIdleTimer);
       }
     }, 100);
   }

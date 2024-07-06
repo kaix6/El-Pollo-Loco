@@ -163,22 +163,16 @@ function startGame() {
  * Restarts the game by resetting all states and reinitializing the game world.
  */
 function startGameAgain() {
-  // Clear all intervals
   intervals.forEach(clearInterval);
   intervals = [];
   character.stopMusic();
-
-  // Reset global variables
   youWin = false;
   keyboard = new Keyboard();
   character = new Character();
-
-  // Hide the game screen and show the start screen
   let startScreen = document.getElementById("startScreen");
   let gameScreen = document.getElementById("fullscreen");
   startScreen.classList.remove("displayNone");
   gameScreen.classList.add("displayNone");
-  // Re-initialize the game
   startGame();
 }
 
@@ -273,6 +267,12 @@ function showButtonsMobile() {
   }
 }
 
+/**
+ * Called when the window has finished loading.
+ *
+ * This function executes `showButtonsMobile` to handle the visibility
+ * or display of buttons specific to mobile devices.
+ */
 window.onload = function () {
   showButtonsMobile();
 };
@@ -301,6 +301,14 @@ function closeWindowSettings() {
   overlay.classList.add("displayNone");
 }
 
+/**
+ * Initializes volume control icons when the DOM is fully loaded.
+ *
+ * This function sets up event listeners for two volume control icons:
+ * - `volumeIcon` listens for `click` events to toggle the mute state.
+ * - `volumeIcon2` listens for `touchstart` events to toggle the mute state on mobile.
+ * @global
+ */
 document.addEventListener("DOMContentLoaded", (event) => {
   const volumeIcon = document.getElementById("volume-icon");
   const volumeIcon2 = document.getElementById("volume-icon2");
@@ -312,7 +320,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     } else {
       volumeIcon.src = "img/volume-mute-fill.svg";
     }
-    character.toggleMute(); // Verwende die globale Instanz
+    character.toggleMute();
     isMuted = !isMuted;
   });
 
@@ -322,7 +330,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     } else {
       volumeIcon2.src = "img/volume-mute-fill.svg";
     }
-    character.toggleMute(); // Verwende die globale Instanz
+    character.toggleMute();
     isMuted = !isMuted;
   });
 });

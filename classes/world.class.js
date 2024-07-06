@@ -28,13 +28,12 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
-    this.intervals = intervals; // Vergiss nicht, intervals zuzuweisen
-    this.character = new Character(); // Initialisiere hier die Character-Instanz
+    this.intervals = intervals; 
+    this.character = new Character();
     this.draw();
     this.setWorld();
     this.run();
   }
-
 
   /**
    * Main game loop, runs periodically.

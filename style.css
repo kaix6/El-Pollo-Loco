@@ -250,8 +250,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden; /* Initially hidden */
-  transform: translateX(100%); /* Start off-screen */
+  visibility: hidden;
+  transform: translateX(100%);
   transition: visibility 0.3s ease-out;
 }
 
@@ -308,10 +308,15 @@ button {
 }
 
 .buttonVolume {
-width: 30px;
+  width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.buttonArea {
+  display: flex;
+  gap: 20px;
 }
 
 @keyframes slideIn {
