@@ -160,6 +160,29 @@ function startGame() {
 }
 
 /**
+ * Restarts the game by resetting all states and reinitializing the game world.
+ */
+function startGameAgain() {
+  // Clear all intervals
+  intervals.forEach(clearInterval);
+  intervals = [];
+  character.stopMusic();
+
+  // Reset global variables
+  youWin = false;
+  keyboard = new Keyboard();
+  character = new Character();
+
+  // Hide the game screen and show the start screen
+  let startScreen = document.getElementById("startScreen");
+  let gameScreen = document.getElementById("fullscreen");
+  startScreen.classList.remove("displayNone");
+  gameScreen.classList.add("displayNone");
+  // Re-initialize the game
+  startGame();
+}
+
+/**
  * Displays the outro screen if the player has won.
  */
 function outroScreen() {
@@ -250,6 +273,10 @@ function showButtonsMobile() {
   }
 }
 
+window.onload = function () {
+  showButtonsMobile();
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   showButtonsMobile();
 });
@@ -260,6 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function openWindowSettings() {
   const overlay = document.getElementById("overlayControl");
   overlay.classList.remove("hide");
+  overlay.classList.remove("displayNone");
   overlay.classList.add("show");
 }
 
@@ -270,17 +298,29 @@ function closeWindowSettings() {
   const overlay = document.getElementById("overlayControl");
   overlay.classList.remove("show");
   overlay.classList.add("hide");
+  overlay.classList.add("displayNone");
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-  const volumeIcon = document.getElementById('volume-icon');
+document.addEventListener("DOMContentLoaded", (event) => {
+  const volumeIcon = document.getElementById("volume-icon");
+  const volumeIcon2 = document.getElementById("volume-icon2");
   let isMuted = false;
 
-  volumeIcon.addEventListener('click', () => {
+  volumeIcon.addEventListener("click", () => {
     if (isMuted) {
-      volumeIcon.src = 'img/volume-up-fill.svg';
+      volumeIcon.src = "img/volume-up-fill.svg";
     } else {
-      volumeIcon.src = 'img/volume-mute-fill.svg';
+      volumeIcon.src = "img/volume-mute-fill.svg";
+    }
+    character.toggleMute(); // Verwende die globale Instanz
+    isMuted = !isMuted;
+  });
+
+  volumeIcon2.addEventListener("touchstart", () => {
+    if (isMuted) {
+      volumeIcon2.src = "img/volume-up-fill.svg";
+    } else {
+      volumeIcon2.src = "img/volume-mute-fill.svg";
     }
     character.toggleMute(); // Verwende die globale Instanz
     isMuted = !isMuted;

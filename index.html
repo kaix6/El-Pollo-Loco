@@ -33,7 +33,7 @@
     <script defer src="levels/level1.js"></script>
     <script defer src="js/game.js"></script>
   </head>
-  
+
   <body onload="closeWindowSettings()">
     <div id="backgroundOutro" class="backgroundOutro displayNone">
       <div id="outroScreen" class="outroScreen displayNone"></div>
@@ -69,8 +69,14 @@
             <span
               ><span class="keyboard-layout-big">Throw Bottle:</span> F</span
             >
-            <img id="volume-icon" src="img/volume-up-fill.svg" alt="">
-
+            <img id="volume-icon" src="img/volume-up-fill.svg" alt="" />
+            <button onclick="startGameAgain()" class="buttonVolume">
+              <img
+                id="returnButton"
+                src="img/arrow-counterclockwise.svg"
+                alt=""
+              />
+            </button>
           </div>
           <a href="index.html"><button>HOME</button></a>
         </div>
@@ -86,6 +92,17 @@
               </button>
             </div>
             <a href="index.html"><button class="buttonMiddle">HOME</button></a>
+            <button class="buttonVolume">
+              <img
+                ontouchstart="startGameAgain()"
+                id="returnButton2"
+                src="img/arrow-counterclockwise.svg"
+                alt=""
+              />
+            </button>
+            <button class="buttonVolume">
+              <img id="volume-icon2" src="img/volume-up-fill.svg" alt="" />
+            </button>
             <div class="buttonRight">
               <button id="upButton">
                 <img src="img/arrow-up.svg" alt="" />
@@ -111,7 +128,7 @@
       </p>
     </div>
 
-    <div id="overlayControl">
+    <div id="overlayControl" class="displayNone">
       <div class="settingsBox">
         <div class="imgPosition">
           <img

@@ -73,6 +73,7 @@ class Character extends MovableObject {
   longIdle = false;
   longIdleTimer;
   idlebutton = false;
+  intervals;
 
   /**
    * Create a character.
@@ -90,10 +91,9 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_GAMEOVER);
     this.applyGravity();
-    this.animate();
+    // this.animate();
     this.isMuted = false; // Initialer Zustand für Mute
   }
-
 
   toggleMute() {
     this.isMuted = !this.isMuted;
@@ -120,17 +120,21 @@ class Character extends MovableObject {
   /**
    * Start character animations.
    */
-  animate() {
-this.setIntervalId();
-    intervals.push(this.intervalId);
-  }
-
+  // animate() {
+  //   this.setIntervalId();
+  //   intervals.push(this.intervalId);
+  // }
 
   startMusic() {
     this.intervalMusic();
     intervals.push(this.intervallMusic);
+    this.setIntervalId();
+    intervals.push(this.intervalId);
   }
 
+  stopMusic() {
+    this.background_music.pause();
+  }
 
   /**
    * Play background music at intervals.
@@ -151,6 +155,15 @@ this.setIntervalId();
         this.long_idle_sound.pause();
         clearTimeout(this.longIdleTimer);
       }
+      if (this.world.keyboard.UP && !this.isAboveGround()) {
+        this.jump();
+        clearTimeout(this.longIdleTimer);
+      }
+
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        this.playWalkingAnimation();
+        clearTimeout(this.longIdleTimer);
+      }
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60));
   }
@@ -158,23 +171,21 @@ this.setIntervalId();
   /**
    * Set interval ID for character actions.
    */
-setIntervalId() {
-  this.intervalId = setInterval(() => {
-    if (this.isDead()) {
-      this.playAnimation(this.IMAGES_DEAD);
-      this.setTimeoutGameOver();
-    } else if (this.isHurt()) {
-      this.playAnimation(this.IMAGES_HURT);
-    } else if (this.world.keyboard.UP && !this.isAboveGround()) {
-      this.jump();
-    } else if (this.isAboveGround()) {
-      this.playAnimation(this.IMAGES_JUMPING);
-      this.long_idle_sound.pause();
-    } else {
-      this.walkAnimation();
-    }
-  }, 100);
-}
+  setIntervalId() {
+    this.intervalId = setInterval(() => {
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.setTimeoutGameOver();
+      } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
+      } else if (this.isAboveGround()) {
+        this.playAnimation(this.IMAGES_JUMPING);
+        this.long_idle_sound.pause();
+      } else {
+        this.walkAnimation();
+      }
+    }, 100);
+  }
 
   /**
    * Set timeout to display the game over screen.
@@ -191,17 +202,13 @@ setIntervalId() {
    * Handle character walking animation.
    */
   walkAnimation() {
-    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-      this.playWalkingAnimation();
+    if (this.idlebutton === false) {
+      this.playIdleAnimation();
+    }
+    if (this.longIdle) {
+      this.playLongIdleAnimation();
     } else {
-      if (this.idlebutton === false) {
-        this.playIdleAnimation();
-      }
-      if (this.longIdle) {
-        this.playLongIdleAnimation();
-      } else {
-        this.playAnimation(this.IMAGES_IDLE);
-      }
+      this.playAnimation(this.IMAGES_IDLE);
     }
   }
 
@@ -230,7 +237,11 @@ setIntervalId() {
    */
   playLongIdleAnimation() {
     this.playAnimation(this.IMAGES_LONG_IDLE);
-    this.long_idle_sound.play();
-    this.long_idle_sound.volume = this.isMuted ? 0 : 0.3;
+    if (!this.isMuted) {
+      this.long_idle_sound.play();
+      this.long_idle_sound.volume = this.isMuted ? 0 : 0.3;
+    } else {
+      this.long_idle_sound.volume = 0;
+    }
   }
 }

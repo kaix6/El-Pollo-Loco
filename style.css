@@ -62,7 +62,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 70px;
   position: absolute;
   bottom: 0px;
   width: 100%;
@@ -262,7 +262,6 @@ button {
 
 #overlayControl.hide {
   animation: slideOut 0.5s forwards;
-  visibility: hidden;
 }
 
 .settingsBox {
@@ -306,6 +305,13 @@ button {
   justify-content: flex-end;
   padding-top: 10px;
   padding-right: 10px;
+}
+
+.buttonVolume {
+width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes slideIn {
