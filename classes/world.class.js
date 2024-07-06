@@ -13,7 +13,7 @@ class World {
   statusBarCoins = new StatusBarCoins();
   statusBarBottles = new StatusBarBottles();
   throwableObject = [];
-  throw_sound = new Audio("audio/throw.wav");
+  throw_sound = new Audio("");
   isDead;
 
   IMAGE_DEAD = "img/3_enemies_chicken/chicken_small/2_dead/dead.png";
@@ -57,8 +57,6 @@ class World {
         this.character.y + 100
       );
       this.throwableObject.push(bottle);
-      this.throw_sound.play();
-      this.throw_sound.volume = 0.1;
       this.character.energy_bottles -= 10;
       this.statusBarBottles.setPercentage(this.character.energy_bottles);
     }

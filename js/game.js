@@ -279,10 +279,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   volumeIcon.addEventListener('click', () => {
     if (isMuted) {
       volumeIcon.src = 'img/volume-up-fill.svg';
-      console.log('spiel laut');
     } else {
       volumeIcon.src = 'img/volume-mute-fill.svg';
-      console.log('spiel mute');
     }
     character.toggleMute(); // Verwende die globale Instanz
     isMuted = !isMuted;

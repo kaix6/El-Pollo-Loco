@@ -62,12 +62,16 @@ class MovableObject extends DrawableObject {
     if (this.energy < 0) {
       this.energy = 0;
     } else {
-      this.hurt_sound.play();
-      this.hurt_sound.volume = 0.1;
-      setTimeout(() => {
-        this.hurt_sound.pause();
-        this.hurt_sound.currentTime = 0;
-      }, 1000);
+      if (!this.isMuted) {
+        this.hurt_sound.play();
+        this.hurt_sound.volume = 0.1;
+        setTimeout(() => {
+          this.hurt_sound.pause();
+          this.hurt_sound.currentTime = 0;
+        }, 1000);
+      } else {
+        this.hurt_sound.volume = 0.0;
+      }
       this.lastHit = new Date().getTime();
     }
   }
@@ -81,12 +85,16 @@ class MovableObject extends DrawableObject {
     if (this.energy_coins < 0) {
       this.energy_coins = 0;
     } else {
+      if (!this.isMuted) {
       this.coins_sound.play();
       this.coins_sound.volume = 0.1;
       setTimeout(() => {
         this.coins_sound.pause();
         this.coins_sound.currentTime = 0;
       }, 1000);
+    } else {
+      this.coins_sound.volume = 0;
+    }
     }
   }
 
@@ -99,12 +107,16 @@ class MovableObject extends DrawableObject {
     if (this.energy_bottles < 0) {
       this.energy_bottles = 0;
     } else {
+      if (!this.isMuted) {
       this.bottles_sound.play();
       this.bottles_sound.volume = 0.1;
       setTimeout(() => {
         this.bottles_sound.pause();
         this.bottles_sound.currentTime = 0;
-      }, 1000);
+      }, 1000);}
+      else {
+        this.bottles_sound.volume = 0;
+      }
     }
   }
 
